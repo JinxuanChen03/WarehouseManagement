@@ -1,0 +1,41 @@
+server:
+  port: 3309
+
+spring:
+  application:
+    name: WarehouseManageBackend
+
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#    password: 123456
+#    database: 0
+#    timeout: 5000
+
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      name: 'warehouse'
+      url: jdbc:mysql://localhost:3306/warehouse?serverTimezone=GMT
+      username: 'root'
+      password: 'root'
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
+    time-zone: GMT+8
+
+  main:
+    allow-circular-references: true
+
+logging:
+  level:
+    com.fishpro.log: debug
+
+mybatis-plus:
+  type-aliases-package: com.example.domain
+  mapper-locations: classpath:/mapper/*.xml
+  #  type-enums-package: com.example.enums
+
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+
