@@ -44,12 +44,13 @@ public class MyAuthenticationHandler implements LogoutSuccessHandler, SessionInf
         if (e instanceof InsufficientAuthenticationException) {
             detailMessage = "请登陆后再访问";
         }
-        response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        response.getWriter().println(OBJECT_MAPPER.writeValueAsString(Res.of(detailMessage, "认证异常")));
+//        response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
+//        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+//        response.getWriter().println(OBJECT_MAPPER.writeValueAsString(Res.of(detailMessage, "认证异常")));
 
-//        String json = JSON.toJSONString(Result.error(HttpStatus.UNAUTHORIZED.value(),"认证异常请重新登录"));
-//        WebUtils.renderString(response,json);
+        //认证异常请重新登录
+        String json = JSON.toJSONString(Result.error(HttpStatus.UNAUTHORIZED.value(),detailMessage));
+        WebUtils.renderString(response,json);
     }
 
     /**
@@ -70,12 +71,13 @@ public class MyAuthenticationHandler implements LogoutSuccessHandler, SessionInf
         } else if (accessDeniedException instanceof AuthorizationServiceException) {
             detailMessage = AuthorizationServiceException.class.getSimpleName() + " " + accessDeniedException.getLocalizedMessage();
         }
-        response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
-        response.setStatus(HttpStatus.FORBIDDEN.value());
-        response.getWriter().println(OBJECT_MAPPER.writeValueAsString(Res.of(detailMessage, "禁止访问")));
+//        response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
+//        response.setStatus(HttpStatus.FORBIDDEN.value());
+//        response.getWriter().println(OBJECT_MAPPER.writeValueAsString(Res.of(detailMessage, "禁止访问")));
 
-//        String json = JSON.toJSONString(Result.error(HttpStatus.UNAUTHORIZED.value(), "访问权限不足"));
-//        WebUtils.renderString(response,json);
+        //访问权限不足
+        String json = JSON.toJSONString(Result.error(HttpStatus.UNAUTHORIZED.value(), detailMessage));
+        WebUtils.renderString(response,json);
     }
 
     /**
@@ -112,9 +114,12 @@ public class MyAuthenticationHandler implements LogoutSuccessHandler, SessionInf
     public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {
         String message = "该账号已从其他设备登陆,如果不是您自己的操作请及时修改密码";
         final HttpServletResponse response = event.getResponse();
-        response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        response.getWriter().println(OBJECT_MAPPER.writeValueAsString(Res.of(event.getSessionInformation(), message)));
+//        response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
+//        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+//        response.getWriter().println(OBJECT_MAPPER.writeValueAsString(Res.of(event.getSessionInformation(), message)));
+
+        String json = JSON.toJSONString(Result.error(HttpStatus.UNAUTHORIZED.value(), message));
+        WebUtils.renderString(response,json);
     }
 
     /**
@@ -127,9 +132,12 @@ public class MyAuthenticationHandler implements LogoutSuccessHandler, SessionInf
      */
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
-        response.setStatus(HttpStatus.OK.value());
-        response.getWriter().println(OBJECT_MAPPER.writeValueAsString(Res.of(MyUserDetails.of(authentication), "注销成功")));
+//        response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
+//        response.setStatus(HttpStatus.OK.value());
+//        response.getWriter().println(OBJECT_MAPPER.writeValueAsString(Res.of(MyUserDetails.of(authentication), "注销成功")));
+
+        String json = JSON.toJSONString(Result.error(HttpStatus.OK.value(), "登出成功"));
+        WebUtils.renderString(response,json);
     }
 }
 
