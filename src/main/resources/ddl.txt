@@ -6,7 +6,7 @@ create table user
     password   varchar(255)                                          null,
     phone      int                                                   null,
     addr       varchar(255)                                          null,
-    permission enum ('ROLE_CUSTOMER', 'ROLE_PROVIDER', 'ROLE_ADMIN') not null comment '身份权限',
+    permission enum ('ROLE_ADMIN', 'ROLE_PROVIDER', 'ROLE_CUSTOMER') not null comment '身份权限',
     deleted    tinyint(1) default 0                                  null
 )
     comment '用户表';
