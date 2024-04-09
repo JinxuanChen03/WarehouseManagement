@@ -2,6 +2,7 @@ package com.bjtu.warehousemanagebackend.mapper;
 
 import com.bjtu.warehousemanagebackend.entity.Warehouse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author Jinxuan Chen
  * @since 2024-04-09
  */
+@Mapper
 public interface WarehouseMapper extends BaseMapper<Warehouse> {
 
 }
