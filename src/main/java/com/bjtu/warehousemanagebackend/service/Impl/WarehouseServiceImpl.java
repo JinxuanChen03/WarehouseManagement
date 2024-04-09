@@ -22,31 +22,33 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
     @Autowired
     private WarehouseMapper warehouseMapper;
 
-    @Override
-    public void addWareHouse(Warehouse warehouse) {
-       updateById(warehouse);
-//        buyMapper.buyGoods(buy);
-    }
+//    @Override
+//    public void updateWarehouse(Warehouse warehouse) {
+//        updateById(warehouse);
+//    }
 
     @Override
-    public void updateWarehouse(Warehouse warehouse) {
-
+    public void deleteWarehouse(String id) {
+        //逻辑删除
+        Warehouse warehouse = getById(id);
+        warehouse.setDeleted(true);
+        updateById(warehouse);
     }
 
-    @Override
-    public void deleteWarehouse(Long id) {
+//    @Override
+//    public Warehouse getWarehouseById(String id) {
+//        return getById(id);
+//    }
+//
+//    @Override
+//    public List<Warehouse> getAllWarehouses() {
+//        return null;
+//    }
 
-    }
-
-    @Override
-    public Warehouse getWarehouseById(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<Warehouse> getAllWarehouses() {
-        return null;
-    }
+//    @Override
+//    public void addWarehouse(Warehouse warehouse) {
+//        save(warehouse);
+//    }
 
 
 }
