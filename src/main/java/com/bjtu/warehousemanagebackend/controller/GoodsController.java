@@ -17,4 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/goods")
 public class GoodsController {
 
+    //添加商品
+
+    //逻辑删除
+
+    //改
+
+    //查
+
 }

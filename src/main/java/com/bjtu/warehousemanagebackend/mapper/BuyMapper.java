@@ -2,6 +2,9 @@ package com.bjtu.warehousemanagebackend.mapper;
 
 import com.bjtu.warehousemanagebackend.entity.Buy;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.mybatis.spring.annotation.MapperScans;
 
 /**
  * <p>
@@ -11,6 +14,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author Jinxuan Chen
  * @since 2024-04-09
  */
+
+@Mapper
 public interface BuyMapper extends BaseMapper<Buy> {
 
 }

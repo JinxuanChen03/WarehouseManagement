@@ -16,5 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/warehouse")
 public class WarehouseController {
-
+    //增
+    //逻辑删除
+    //改
+    //查
 }

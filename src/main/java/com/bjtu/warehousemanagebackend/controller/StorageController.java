@@ -16,5 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/storage")
 public class StorageController {
-
+    //仓库储存商品，新增一条
+    //查
+    //改，增，减
 }

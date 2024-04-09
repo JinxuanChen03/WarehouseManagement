@@ -16,5 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/provide")
 public class ProvideController {
+    //供货商供应商品，增一条
+
+    //查
+    //改，增，减
 
 }
