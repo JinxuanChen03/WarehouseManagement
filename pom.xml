@@ -76,6 +76,28 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 			<version>2.5.9</version>
 		</dependency>
+		<!--session-redis-->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
+		<!--fastJSON-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.38</version>
+		</dependency>
+		<!--jwt-->
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.0</version>
+		</dependency>
 		<!-- mybaits-plus 代码生成器 -->
 		<dependency>
 			<groupId>com.baomidou</groupId>

@@ -1,0 +1,75 @@
+create table user
+(
+    id         varchar(255)                                          not null
+        primary key,
+    name       varchar(255)                                          null,
+    password   varchar(255)                                          null,
+    phone      int                                                   null,
+    addr       varchar(255)                                          null,
+    permission enum ('ROLE_CUSTOMER', 'ROLE_PROVIDER', 'ROLE_ADMIN') not null comment '身份权限',
+    deleted    tinyint(1) default 0                                  null
+)
+    comment '用户表';
+
+create table warehouse
+(
+    id      varchar(255)         not null comment '仓库号'
+        primary key,
+    name    varchar(255)         null,
+    addr    varchar(255)         null,
+    stocks  int                  null comment '总库存量',
+    deleted tinyint(1) default 0 null
+)
+    comment '仓库';
+
+create table buy
+(
+    u_id     varchar(255) null comment '客户编号',
+    g_id     varchar(255) null comment '货号',
+    purchase int          null comment '购买量',
+    constraint buy_goods_id_fk
+        foreign key (g_id) references goods (id)
+            on update cascade,
+    constraint buy_user_id_fk
+        foreign key (u_id) references user (id)
+            on update cascade
+)
+    comment '用户购买货物';
+
+create table goods
+(
+    id      varchar(255)               not null comment '货号'
+        primary key,
+    name    varchar(255)               null,
+    type    enum ('A类', 'B类', 'C类') null,
+    deleted tinyint(1) default 0       null
+)
+    comment '货物';
+
+create table provide
+(
+    g_id   varchar(255) null comment '货号',
+    u_id   varchar(255) null comment '供应商编号',
+    supply int          null comment '供货量',
+    constraint provide_goods_id_fk
+        foreign key (g_id) references goods (id)
+            on update cascade,
+    constraint provide_user_id_fk
+        foreign key (u_id) references user (id)
+            on update cascade
+)
+    comment '供应商供货';
+
+create table storage
+(
+    g_id   varchar(255) null comment '货号',
+    w_id   varchar(255) null comment '仓库编号',
+    stocks int          null comment '库存量',
+    constraint storage_goods_id_fk
+        foreign key (g_id) references goods (id)
+            on update cascade,
+    constraint storage_warehouse_id_fk
+        foreign key (w_id) references warehouse (id)
+            on update cascade
+)
+    comment '仓库存放货物';
