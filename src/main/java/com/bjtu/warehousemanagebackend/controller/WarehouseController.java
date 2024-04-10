@@ -5,6 +5,7 @@ package com.bjtu.warehousemanagebackend.controller;
 import com.bjtu.warehousemanagebackend.entity.Buy;
 import com.bjtu.warehousemanagebackend.entity.Warehouse;
 import com.bjtu.warehousemanagebackend.service.IWarehouseService;
+import com.bjtu.warehousemanagebackend.service.impl.WarehouseServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import java.util.List;
 @RequestMapping("/warehouses")
 public class WarehouseController {
     @Autowired
-    private IWarehouseService warehouseService;
+    private WarehouseServiceImpl warehouseService;
 
     //新增一个仓库
     @PostMapping

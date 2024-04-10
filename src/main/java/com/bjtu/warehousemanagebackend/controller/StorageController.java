@@ -5,6 +5,7 @@ import com.bjtu.warehousemanagebackend.entity.Provide;
 import com.bjtu.warehousemanagebackend.entity.Storage;
 import com.bjtu.warehousemanagebackend.service.IProvideService;
 import com.bjtu.warehousemanagebackend.service.IStorageService;
+import com.bjtu.warehousemanagebackend.service.impl.StorageServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import java.util.List;
 @RequestMapping("/storage")
 public class StorageController {
     @Autowired
-    private IStorageService storageService;
+    private StorageServiceImpl storageService;
 
     //供货商供应商品，增一条
     @PostMapping

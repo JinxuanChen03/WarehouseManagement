@@ -1,4 +1,4 @@
-package com.bjtu.warehousemanagebackend.service.Impl;
+package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.bjtu.warehousemanagebackend.entity.Goods;
 import com.bjtu.warehousemanagebackend.entity.Warehouse;

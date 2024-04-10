@@ -4,6 +4,7 @@ package com.bjtu.warehousemanagebackend.controller;
 import com.bjtu.warehousemanagebackend.entity.Provide;
 import com.bjtu.warehousemanagebackend.entity.Warehouse;
 import com.bjtu.warehousemanagebackend.service.IProvideService;
+import com.bjtu.warehousemanagebackend.service.impl.ProvideServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ import java.util.List;
 @RequestMapping("/provide")
 public class ProvideController {
     @Autowired
-    private IProvideService iProvideService;
+    private ProvideServiceImpl iProvideService;
 
     //供货商供应商品，增一条
     @PostMapping
