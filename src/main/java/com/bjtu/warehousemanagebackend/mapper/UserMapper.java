@@ -3,6 +3,8 @@ package com.bjtu.warehousemanagebackend.mapper;
 import com.bjtu.warehousemanagebackend.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -12,7 +14,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @author Jinxuan Chen
  * @since 2024-04-09
  */
-@Mapper
+
 public interface UserMapper extends BaseMapper<User> {
 
 }

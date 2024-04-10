@@ -17,7 +17,6 @@ import java.util.List;
  * @since 2024-04-09
  */
 
-@Mapper
 public interface BuyMapper extends BaseMapper<Buy> {
 
     //新增购买记录

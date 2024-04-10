@@ -13,6 +13,7 @@ import java.util.List;
  * @author Jinxuan Chen
  * @since 2024-04-09
  */
+
 public interface GoodsMapper extends BaseMapper<Goods> {
     void insertGood(Goods goods);
     void updateGood(Goods goods);

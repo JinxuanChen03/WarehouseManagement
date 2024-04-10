@@ -27,16 +27,12 @@ public class MyLoginFilter extends UsernamePasswordAuthenticationFilter {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public MyLoginFilter(AuthenticationManager authenticationManager,
-                         MyAuthenticationHandler authenticationHandler,
                          MyRememberMeService rememberMeServices) throws Exception {
         super(authenticationManager);
-        //验证码
-//        setAuthenticationFailureHandler(authenticationHandler);
-//        setAuthenticationSuccessHandler(authenticationHandler);
         //rememberMe
         setRememberMeServices(rememberMeServices);
         //登陆使用的路径
-        setFilterProcessesUrl("/user/login");
+        setFilterProcessesUrl("/login");
     }
 
     private static boolean isContentTypeJson(HttpServletRequest request) {
@@ -52,14 +48,12 @@ public class MyLoginFilter extends UsernamePasswordAuthenticationFilter {
         }
         String username = null;
         String password = null;
-//        String verifyCode = null;
         String rememberMe = null;
         if (isContentTypeJson(request)) {
             try {
                 Map<String, String> map = objectMapper.readValue(request.getInputStream(), new TypeReference<>() { });
                 username = map.get(getUsernameParameter());
                 password = map.get(getPasswordParameter());
-//                verifyCode = map.get(VERIFY_CODE_KEY);
                 rememberMe = map.get(MyRememberMeService.REMEMBER_ME_KEY);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -67,28 +61,16 @@ public class MyLoginFilter extends UsernamePasswordAuthenticationFilter {
         } else {
             username = obtainUsername(request);
             password = obtainPassword(request);
-//            verifyCode = request.getParameter(VERIFY_CODE_KEY);
             rememberMe = request.getParameter(MyRememberMeService.REMEMBER_ME_KEY);
         }
-        //校验验证码
-//        final String vc = (String) request.getSession().getAttribute(VERIFY_CODE_KEY);
-//        if (vc == null) {
-//            throw new BadCredentialsException("验证码不存在,请先获取验证码");
-//        } else if (verifyCode == null || "".equals(verifyCode)) {
-//            throw new BadCredentialsException("请输入验证码");
-//        } else if (!vc.equalsIgnoreCase(verifyCode)) {
-//            throw new BadCredentialsException("验证码错误");
-//        }
 
         //将 rememberMe 状态存入 attr中
         if (!ObjectUtils.isEmpty(rememberMe)) {
             request.setAttribute(MyRememberMeService.REMEMBER_ME_KEY, rememberMe);
         }
-
         username = (username != null) ? username.trim() : "";
         password = (password != null) ? password : "";
         UsernamePasswordAuthenticationToken authRequest = UsernamePasswordAuthenticationToken.unauthenticated(username, password);
-        // Allow subclasses to set the "details" property
         setDetails(request, authRequest);
 
         return this.getAuthenticationManager().authenticate(authRequest);

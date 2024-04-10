@@ -1,6 +1,6 @@
 package com.bjtu.warehousemanagebackend.utils;
 
-import com.bjtu.warehousemanagebackend.service.Impl.UserDetailsServiceImpl;
+import com.bjtu.warehousemanagebackend.service.impl.UserDetailsServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
