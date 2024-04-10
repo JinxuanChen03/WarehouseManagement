@@ -2,6 +2,9 @@ package com.bjtu.warehousemanagebackend.mapper;
 
 import com.bjtu.warehousemanagebackend.entity.Storage;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +14,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author Jinxuan Chen
  * @since 2024-04-09
  */
+@Mapper
 public interface StorageMapper extends BaseMapper<Storage> {
 
+    List<Storage> searchStoragersBywId(String wId);
+
+    List<Storage> searchStoragersByGid(String gId);
+
+    Storage searchStoragersBywIdAndGid(String wId,String gId);
 }

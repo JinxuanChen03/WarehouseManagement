@@ -1,4 +1,4 @@
-package com.bjtu.warehousemanagebackend.service.impl;
+package com.bjtu.warehousemanagebackend.service.Impl;
 
 import com.bjtu.warehousemanagebackend.entity.Buy;
 import com.bjtu.warehousemanagebackend.mapper.BuyMapper;
@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * <p>
@@ -27,5 +27,10 @@ public class BuyServiceImpl extends ServiceImpl<BuyMapper, Buy> implements IBuyS
     public void buyGoods(Buy buy) {
         updateById(buy);
 //        buyMapper.buyGoods(buy);
+    }
+
+    @Override
+    public List<Buy> getOrderById(String uId) {
+        return buyMapper.getOrderById(uId);
     }
 }

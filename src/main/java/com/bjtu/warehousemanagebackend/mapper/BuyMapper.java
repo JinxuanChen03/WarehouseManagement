@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScans;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户购买货物 Mapper 接口
@@ -17,5 +19,11 @@ import org.mybatis.spring.annotation.MapperScans;
 
 @Mapper
 public interface BuyMapper extends BaseMapper<Buy> {
+
+    //新增购买记录
+    void insertBuy();
+    //获取用户订单
+    List<Buy> getOrderById(String uId);
+    //获取全部订单
 
 }

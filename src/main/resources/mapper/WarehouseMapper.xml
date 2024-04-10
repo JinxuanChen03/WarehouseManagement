@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bjtu.warehousemanagebackend.mapper.WarehouseMapper">
-    <!-- 插入仓库信息 -->
-    <insert id="insertWarehouse" parameterType="com.bjtu.warehousemanagebackend.entity.Warehouse">
-        INSERT INTO warehouse (id, name, addr, stocks, deleted)
-        VALUES (#{id}, #{name}, #{addr}, #{stocks}, #{deleted})
-    </insert>
-
-    <!-- 更新仓库信息 -->
-    <update id="updateWarehouse" parameterType="com.bjtu.warehousemanagebackend.entity.Warehouse">
-        UPDATE warehouse
-        SET name = #{name}, addr = #{addr}, stocks = #{stocks}, deleted = #{deleted}
-        WHERE id = #{id}
-    </update>
-
     <!-- 逻辑删除仓库信息 -->
     <update id="deleteWarehouse" parameterType="java.lang.Long">
         UPDATE warehouse
@@ -21,14 +8,5 @@
         WHERE id = #{id}
     </update>
 
-    <!-- 获取指定id的仓库信息 -->
-    <select id="getWarehouseById" parameterType="java.lang.Long" resultType="com.bjtu.warehousemanagebackend.entity.Warehouse">
-        SELECT * FROM warehouse WHERE id = #{id}
-    </select>
-
-    <!-- 获取所有仓库信息 -->
-    <select id="getAllWarehouses" resultType="com.bjtu.warehousemanagebackend.entity.Warehouse">
-        SELECT * FROM warehouse
-    </select>
 
 </mapper>

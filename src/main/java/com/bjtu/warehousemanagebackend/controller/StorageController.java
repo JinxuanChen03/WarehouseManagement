@@ -1,9 +1,18 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.bjtu.warehousemanagebackend.entity.Provide;
+import com.bjtu.warehousemanagebackend.entity.Storage;
+import com.bjtu.warehousemanagebackend.service.IProvideService;
+import com.bjtu.warehousemanagebackend.service.IStorageService;
+import com.bjtu.warehousemanagebackend.utils.Result;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -16,7 +25,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/storage")
 public class StorageController {
-    //仓库储存商品，新增一条
-    //查
-    //改，增，减
+    @Autowired
+    private IStorageService storageService;
+
+    //供货商供应商品，增一条
+    @PostMapping
+    public ResponseEntity<Result> addStorage(@RequestBody @Valid Storage storage){
+        storageService.save(storage);
+        return new ResponseEntity<>(Result.success(), HttpStatus.OK);
+    }
+
+    // Search provides by wId
+    @GetMapping("/wId/{wId}")
+    public ResponseEntity<Result> searchStorageBywId(@PathVariable String wId) {
+        List<Storage> storage = storageService.getBywId(wId);
+        return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
+    }
+
+    // Search provides by gid
+    @GetMapping("/gId/{gId}")
+    public ResponseEntity<Result> searchStorageByGid(@PathVariable String gId) {
+        List<Storage> storage = storageService.getByGid(gId);
+        return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
+    }
+
+    // Search provides by wId and gid
+    @GetMapping("/wId/{wId}/gId/{gId}")
+    public ResponseEntity<Result> searchStorageBywIdAndGid(@PathVariable String wId, @PathVariable String gId) {
+        Storage storage = storageService.getBywIdAndGid(wId, gId);
+        return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
+    }
+
 }

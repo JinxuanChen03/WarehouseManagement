@@ -15,13 +15,7 @@ import java.util.List;
  */
 public interface IWarehouseService extends IService<Warehouse> {
 
-//    void updateWarehouse(Warehouse warehouse);
 
     void deleteWarehouse(String id);
 
-//    Warehouse getWarehouseById(String id);
-
-//    List<Warehouse> getAllWarehouses();
-
-//    void addWarehouse(Warehouse warehouse);
 }

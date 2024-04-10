@@ -1,16 +1,15 @@
 package com.bjtu.warehousemanagebackend.controller;
 
-
 import com.bjtu.warehousemanagebackend.entity.Buy;
+import com.bjtu.warehousemanagebackend.service.IBuyService;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.bjtu.warehousemanagebackend.service.impl.BuyServiceImpl;
+import java.util.List;
 
 /**
  * <p>
@@ -25,7 +24,7 @@ import com.bjtu.warehousemanagebackend.service.impl.BuyServiceImpl;
 public class BuyController {
 
     @Autowired
-    private BuyServiceImpl buyService;
+    private IBuyService buyService;
 
     //用户买商品
     @RequestMapping(method = RequestMethod.POST)
@@ -34,8 +33,19 @@ public class BuyController {
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
-    //查买了什么商品
+    //全部购买记录
+    @GetMapping
+    public ResponseEntity<Result> getAllOrder() {
+        List<Buy> buy = buyService.list();
+        return new ResponseEntity<>(Result.success(buy), HttpStatus.OK);
+    }
 
+    // 具体一个人的购买记录
+    @GetMapping("/{uId}")
+    public ResponseEntity<Result> getOrderById(@PathVariable("uId") String uId) {
+        List<Buy> buy = buyService.getOrderById(uId);
+        return new ResponseEntity<>(Result.success(buy), HttpStatus.OK);
+    }
 
 
 

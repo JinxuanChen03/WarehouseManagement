@@ -3,6 +3,8 @@ package com.bjtu.warehousemanagebackend.mapper;
 import com.bjtu.warehousemanagebackend.entity.Goods;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 货物 Mapper 接口
@@ -12,5 +14,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2024-04-09
  */
 public interface GoodsMapper extends BaseMapper<Goods> {
-
+    void insertGood(Goods goods);
+    void updateGood(Goods goods);
+    void deleteGood(String id);
+    List<Goods> getGoodsById(String id);
+    List<Goods> getAllGoods();
 }

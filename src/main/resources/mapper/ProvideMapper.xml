@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bjtu.warehousemanagebackend.mapper.ProvideMapper">
+    <!-- 插入供应商信息 -->
+    <insert id="insertProvide" parameterType="com.bjtu.warehousemanagebackend.entity.Provide">
+        INSERT INTO provide (gId, uId, supply)
+        VALUES (#{gId}, #{uId}, #{supply})
+    </insert>
+
+    <!-- 搜索供应商相关信息的三种方式 -->
+    <select id="searchProvidersByUid" resultType="com.bjtu.warehousemanagebackend.entity.Provide">
+        SELECT * FROM provide WHERE uId = #{uId}
+    </select>
+
+    <select id="searchProvidersByGid" resultType="com.bjtu.warehousemanagebackend.entity.Provide">
+        SELECT * FROM provide WHERE gId = #{gId}
+    </select>
+
+    <select id="searchProvidersByUidAndGid" resultType="com.bjtu.warehousemanagebackend.entity.Provide">
+        SELECT * FROM provide WHERE uId = #{uId} AND gId = #{gId}
+    </select>
+        <!-- 更新供应商信息 -->
+        <update id="updateProvide" parameterType="com.bjtu.warehousemanagebackend.entity.Provide">
+            UPDATE provide
+            SET gId=#{gId}, uId=#{uId},supply=#{supply}
+            WHERE gId = #{gId} and uId = #{uId}
+        </update>
 
 </mapper>

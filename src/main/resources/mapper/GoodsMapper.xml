@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bjtu.warehousemanagebackend.mapper.GoodsMapper">
+    <!-- 插入货物信息 -->
+    <insert id="insertGood" parameterType="com.bjtu.warehousemanagebackend.entity.Goods">
+        INSERT INTO goods (id, name, type,deleted)
+        VALUES (#{id}, #{name}, #{addr}, #{stocks}, #{deleted})
+    </insert>
+
+    <!-- 更新货物信息 -->
+    <update id="updateGood" parameterType="com.bjtu.warehousemanagebackend.entity.Goods">
+        UPDATE goods
+        SET name = #{name}, type = #{type}, deleted = #{deleted}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 逻辑删除货物信息 -->
+    <update id="deleteGood" parameterType="java.lang.Long">
+        UPDATE goods
+        SET deleted = true
+        WHERE id = #{id}
+    </update>
+
+    <!-- 获取指定id的货物信息 -->
+    <select id="getGoodsById" parameterType="java.lang.Long" resultType="com.bjtu.warehousemanagebackend.entity.Goods">
+        SELECT * FROM goods WHERE id = #{id}
+    </select>
+
+    <!-- 获取所有货物信息 -->
+    <select id="getAllGoods" resultType="com.bjtu.warehousemanagebackend.entity.Goods">
+        SELECT * FROM goods
+    </select>
 
 </mapper>

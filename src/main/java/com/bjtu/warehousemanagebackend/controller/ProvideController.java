@@ -1,9 +1,17 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.bjtu.warehousemanagebackend.entity.Provide;
+import com.bjtu.warehousemanagebackend.entity.Warehouse;
+import com.bjtu.warehousemanagebackend.service.IProvideService;
+import com.bjtu.warehousemanagebackend.utils.Result;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -16,9 +24,41 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/provide")
 public class ProvideController {
-    //供货商供应商品，增一条
+    @Autowired
+    private IProvideService iProvideService;
 
-    //查
-    //改，增，减
+    //供货商供应商品，增一条
+    @PostMapping
+    public ResponseEntity<Result>  addProvide(@RequestBody @Valid Provide provide){
+        iProvideService.save(provide);
+        return new ResponseEntity<>(Result.success(), HttpStatus.OK);
+    }
+
+    // Search provides by uId
+    @GetMapping("/uId/{uId}")
+    public ResponseEntity<Result> searchProvideByuId(@PathVariable String uId) {
+        List<Provide> provides = iProvideService.getByuId(uId);
+        return new ResponseEntity<>(Result.success(provides), HttpStatus.OK);
+    }
+
+    // Search provides by gid
+    @GetMapping("/gId/{gId}")
+    public ResponseEntity<Result> searchProvideByGid(@PathVariable String gId) {
+        List<Provide> provides = iProvideService.getByGid(gId);
+        return new ResponseEntity<>(Result.success(provides), HttpStatus.OK);
+    }
+
+    // Search provides by uId and gid
+    @GetMapping("/uId/{uId}/gId/{gId}")
+    public ResponseEntity<Result> searchProvideByuIdAndGid(@PathVariable String uId, @PathVariable String gId) {
+        Provide provide = iProvideService.getByuIdAndGid(uId, gId);
+        return new ResponseEntity<>(Result.success(provide), HttpStatus.OK);
+    }
+    //改，增，减,增删数量
+    @PutMapping("/uId/{uId}/gId/{gId}")
+    public ResponseEntity<Result> updateProvide(@PathVariable String uId, @PathVariable String gId) {
+        iProvideService.updateProvide(uId, gId);
+        return new ResponseEntity<>(Result.success(), HttpStatus.OK);
+    }
 
 }
