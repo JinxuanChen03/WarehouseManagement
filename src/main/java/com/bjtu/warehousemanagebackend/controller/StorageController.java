@@ -33,24 +33,11 @@ public class StorageController {
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
-    // Search provides by wId
-    @GetMapping("/wId/{wId}")
-    public ResponseEntity<Result> searchStorageBywId(@PathVariable String wId) {
-        List<Storage> storage = storageService.getBywId(wId);
-        return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
-    }
-
-    // Search provides by gid
-    @GetMapping("/gId/{gId}")
-    public ResponseEntity<Result> searchStorageByGid(@PathVariable String gId) {
-        List<Storage> storage = storageService.getByGid(gId);
-        return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
-    }
 
     // Search provides by wId and gid
-    @GetMapping("/wId/{wId}/gId/{gId}")
-    public ResponseEntity<Result> searchStorageBywIdAndGid(@PathVariable String wId, @PathVariable String gId) {
-        Storage storage = storageService.getBywIdAndGid(wId, gId);
+    @GetMapping
+    public ResponseEntity<Result> searchStorageByWidAndGid(@RequestParam String wid,@RequestParam String gid) {
+        Storage storage = storageService.getBywIdAndGid(wid, gid);
         return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
     }
 

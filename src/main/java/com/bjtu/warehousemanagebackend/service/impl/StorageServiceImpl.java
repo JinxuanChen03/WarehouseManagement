@@ -1,6 +1,7 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.bjtu.warehousemanagebackend.entity.Storage;
 import com.bjtu.warehousemanagebackend.mapper.StorageMapper;
 import com.bjtu.warehousemanagebackend.mapper.UserMapper;
@@ -39,7 +40,10 @@ public class StorageServiceImpl extends ServiceImpl<StorageMapper, Storage> impl
     }
 
     @Override
-    public Storage getBywIdAndGid(String wId, String gId) {
-        return storageMapper.searchStoragersBywIdAndGid(wId,gId);
+    public Storage getBywIdAndGid(String wid, String gid) {
+        LambdaQueryWrapper<Storage> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Storage::getWId,wid)
+                .eq(Storage::getGId,gid);
+        return getOne(wrapper);
     }
 }

@@ -2,7 +2,9 @@ package com.bjtu.warehousemanagebackend.controller;
 
 
 
+import com.bjtu.warehousemanagebackend.entity.Storage;
 import com.bjtu.warehousemanagebackend.entity.Warehouse;
+import com.bjtu.warehousemanagebackend.service.impl.StorageServiceImpl;
 import com.bjtu.warehousemanagebackend.service.impl.WarehouseServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
@@ -26,6 +28,8 @@ import java.util.List;
 public class WarehouseController {
     @Autowired
     private WarehouseServiceImpl warehouseService;
+    @Autowired
+    private StorageServiceImpl storageService;
 
     //新增一个仓库
     @PostMapping
@@ -61,5 +65,12 @@ public class WarehouseController {
     public ResponseEntity<Result> getAllWarehouses() {
         List<Warehouse> warehouses = warehouseService.list();
         return new ResponseEntity<>(Result.success(warehouses), HttpStatus.OK);
+    }
+
+    // Search provides by wId
+    @GetMapping("/{wid}/storage")
+    public ResponseEntity<Result> searchStorageByWid(@PathVariable String wid) {
+        List<Storage> storage = storageService.getBywId(wid);
+        return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
     }
 }

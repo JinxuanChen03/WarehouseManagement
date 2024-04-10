@@ -3,8 +3,10 @@ package com.bjtu.warehousemanagebackend.controller;
 
 import com.bjtu.warehousemanagebackend.entity.Goods;
 import com.bjtu.warehousemanagebackend.entity.Provide;
+import com.bjtu.warehousemanagebackend.entity.Storage;
 import com.bjtu.warehousemanagebackend.service.impl.GoodsServiceImpl;
 import com.bjtu.warehousemanagebackend.service.impl.ProvideServiceImpl;
+import com.bjtu.warehousemanagebackend.service.impl.StorageServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class GoodsController {
 
     @Autowired
     private ProvideServiceImpl iProvideService;
+
+    @Autowired
+    private StorageServiceImpl storageService;
 
     //新增一个仓库
     @PostMapping
@@ -72,5 +77,13 @@ public class GoodsController {
         List<Provide> provides = iProvideService.getByGid(gid);
         return new ResponseEntity<>(Result.success(provides), HttpStatus.OK);
     }
+
+    // Search storage by gid
+    @GetMapping("/{gid}/storage")
+    public ResponseEntity<Result> searchStorageByGid(@PathVariable String gid) {
+        List<Storage> storage = storageService.getByGid(gid);
+        return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
+    }
+
 
 }
