@@ -19,10 +19,5 @@ import java.util.List;
 
 public interface BuyMapper extends BaseMapper<Buy> {
 
-    //新增购买记录
-    void insertBuy();
-    //获取用户订单
-    List<Buy> getOrderById(String uId);
-    //获取全部订单
 
 }

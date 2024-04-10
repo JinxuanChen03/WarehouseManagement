@@ -19,7 +19,7 @@ import com.bjtu.warehousemanagebackend.service.impl.UserServiceImpl;
  * @since 2024-04-09
  */
 @RestController
-@RequestMapping("/users")
+//@RequestMapping("/users")
 public class UserController {
 
     @Autowired

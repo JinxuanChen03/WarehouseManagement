@@ -7,7 +7,6 @@ import com.bjtu.warehousemanagebackend.entity.Warehouse;
 import com.bjtu.warehousemanagebackend.service.IWarehouseService;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ import java.util.List;
  * @since 2024-04-09
  */
 @RestController
-@RequestMapping("/warehouse")
+@RequestMapping("/warehouses")
 public class WarehouseController {
     @Autowired
     private IWarehouseService warehouseService;
@@ -38,7 +37,7 @@ public class WarehouseController {
 
     // PUT请求：更新指定id的仓库信息
     @PutMapping("/{id}")
-    public ResponseEntity<Result> updateWarehouse(@PathVariable("id") String id, @NotNull @RequestBody @Valid Warehouse warehouse) {
+    public ResponseEntity<Result> updateWarehouse(@PathVariable("id") String id, @RequestBody @Valid Warehouse warehouse) {
         warehouse.setId(id); // 设置要更新的仓库的id
         warehouseService.updateById(warehouse);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);

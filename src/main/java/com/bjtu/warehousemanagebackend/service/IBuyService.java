@@ -14,8 +14,7 @@ import java.util.List;
  * @since 2024-04-09
  */
 public interface IBuyService extends IService<Buy> {
+    List<Buy> getOrderByUid(String uid);
 
-    void buyGoods(Buy buy);
-
-    List<Buy> getOrderById(String uId);
+    List<Buy> getOrderByGid(String gid);
 }

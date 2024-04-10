@@ -14,7 +14,6 @@ import java.util.List;
  * @author Jinxuan Chen
  * @since 2024-04-09
  */
-@Mapper
 public interface StorageMapper extends BaseMapper<Storage> {
 
     List<Storage> searchStoragersBywId(String wId);

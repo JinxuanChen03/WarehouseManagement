@@ -20,33 +20,39 @@ import java.util.List;
  * @since 2024-04-09
  */
 @RestController
-@RequestMapping("/buy")
 public class BuyController {
 
     @Autowired
     private IBuyService buyService;
 
     //用户买商品
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Result> buyGoods(@RequestBody @Valid Buy buy){
-        buyService.buyGoods(buy);
+    @PostMapping("/purchase")
+    public ResponseEntity<Result> buyGoods(@RequestParam String uid, @RequestParam String gid, @RequestBody @Valid Buy info){
+        info.setUId(uid);
+        info.setGId(gid);
+        buyService.updateById(info);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
     //全部购买记录
-    @GetMapping
+    //todo:分页查询
+    @GetMapping("/purchase")
     public ResponseEntity<Result> getAllOrder() {
-        List<Buy> buy = buyService.list();
-        return new ResponseEntity<>(Result.success(buy), HttpStatus.OK);
+        return new ResponseEntity<>(Result.success(buyService.list()), HttpStatus.OK);
     }
 
     // 具体一个人的购买记录
-    @GetMapping("/{uId}")
-    public ResponseEntity<Result> getOrderById(@PathVariable("uId") String uId) {
-        List<Buy> buy = buyService.getOrderById(uId);
+    @GetMapping("/{uid}/purchase")
+    public ResponseEntity<Result> getOrderByUid(@PathVariable String uid) {
+        List<Buy> buy = buyService.getOrderByUid(uid);
         return new ResponseEntity<>(Result.success(buy), HttpStatus.OK);
     }
 
-
+    // 具体一个商品的被购买记录
+    @GetMapping("/goods/{gid}/purchase")
+    public ResponseEntity<Result> getOrderByGid(@PathVariable String gid) {
+        List<Buy> buy = buyService.getOrderByGid(gid);
+        return new ResponseEntity<>(Result.success(buy), HttpStatus.OK);
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.bjtu.warehousemanagebackend.service.Impl;
+package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
