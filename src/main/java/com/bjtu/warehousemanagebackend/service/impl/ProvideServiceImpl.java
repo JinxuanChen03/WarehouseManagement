@@ -2,6 +2,7 @@ package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.bjtu.warehousemanagebackend.entity.Provide;
 import com.bjtu.warehousemanagebackend.mapper.ProvideMapper;
+import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.service.IProvideService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ import java.util.List;
  */
 @Service
 public class ProvideServiceImpl extends ServiceImpl<ProvideMapper, Provide> implements IProvideService {
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     private ProvideMapper provideMapper;

@@ -3,6 +3,8 @@ package com.bjtu.warehousemanagebackend.service;
 import com.bjtu.warehousemanagebackend.entity.Goods;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 货物 服务类
@@ -14,4 +16,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface IGoodsService extends IService<Goods> {
 
     void deleteGoods(String id);
+
+    Goods getGoodsById(String id);
+
+    List<Goods> getAllGoods();
 }

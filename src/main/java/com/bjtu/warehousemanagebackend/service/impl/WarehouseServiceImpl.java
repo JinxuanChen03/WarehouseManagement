@@ -2,6 +2,7 @@ package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.bjtu.warehousemanagebackend.entity.Warehouse;
+import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.mapper.WarehouseMapper;
 import com.bjtu.warehousemanagebackend.service.IWarehouseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -20,6 +21,9 @@ import org.springframework.stereotype.Service;
 public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse> implements IWarehouseService {
     @Autowired
     private WarehouseMapper warehouseMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public void deleteWarehouse(String id) {

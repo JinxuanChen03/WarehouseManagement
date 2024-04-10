@@ -22,6 +22,10 @@ import java.util.Objects;
 
 @Service
 public class UserDetailsServiceImpl extends ServiceImpl<UserMapper, User> implements UserDetailsService,UserDetailsPasswordService {
+
+    @Autowired
+    private UserMapper userMapper;
+
     @Autowired
     private UserServiceImpl userService;
 

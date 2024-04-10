@@ -52,14 +52,14 @@ public class GoodsController {
     // GET请求：获取指定id的仓库信息
     @GetMapping("/{id}")
     public ResponseEntity<Result> getGoodsById(@PathVariable("id") String id) {
-        Goods good = iGoodsService.getById(id);
+        Goods good = iGoodsService.getGoodsById(id);
         return new ResponseEntity<>(Result.success(good), HttpStatus.OK);
     }
 
     // GET请求：获取所有仓库信息
     @GetMapping
     public ResponseEntity<Result> getAllGoods() {
-        List<Goods> goods = iGoodsService.list();
+        List<Goods> goods = iGoodsService.getAllGoods();
         return new ResponseEntity<>(Result.success(goods), HttpStatus.OK);
     }
 
