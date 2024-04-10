@@ -1,10 +1,7 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 
-import com.bjtu.warehousemanagebackend.entity.Provide;
 import com.bjtu.warehousemanagebackend.entity.Storage;
-import com.bjtu.warehousemanagebackend.service.IProvideService;
-import com.bjtu.warehousemanagebackend.service.IStorageService;
 import com.bjtu.warehousemanagebackend.service.impl.StorageServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;

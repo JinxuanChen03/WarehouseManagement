@@ -22,5 +22,6 @@ public interface IProvideService extends IService<Provide> {
 
     List<Provide> getByuId(String uId);
 
-    void updateProvide(String uId, String gId);
+
+    void updateProvide(Provide provide);
 }

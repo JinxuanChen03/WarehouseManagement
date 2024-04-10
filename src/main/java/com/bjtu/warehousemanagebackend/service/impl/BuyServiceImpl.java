@@ -3,10 +3,8 @@ package com.bjtu.warehousemanagebackend.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.bjtu.warehousemanagebackend.entity.Buy;
 import com.bjtu.warehousemanagebackend.mapper.BuyMapper;
-import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.service.IBuyService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +19,6 @@ import java.util.List;
  */
 @Service
 public class BuyServiceImpl extends ServiceImpl<BuyMapper, Buy> implements IBuyService {
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Override
     public List<Buy> getOrderByUid(String uid) {

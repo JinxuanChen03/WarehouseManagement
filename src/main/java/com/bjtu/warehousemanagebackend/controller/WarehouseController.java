@@ -2,9 +2,7 @@ package com.bjtu.warehousemanagebackend.controller;
 
 
 
-import com.bjtu.warehousemanagebackend.entity.Buy;
 import com.bjtu.warehousemanagebackend.entity.Warehouse;
-import com.bjtu.warehousemanagebackend.service.IWarehouseService;
 import com.bjtu.warehousemanagebackend.service.impl.WarehouseServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;

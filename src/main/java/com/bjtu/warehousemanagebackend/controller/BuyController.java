@@ -1,7 +1,6 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 import com.bjtu.warehousemanagebackend.entity.Buy;
-import com.bjtu.warehousemanagebackend.service.IBuyService;
 import com.bjtu.warehousemanagebackend.service.impl.BuyServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;

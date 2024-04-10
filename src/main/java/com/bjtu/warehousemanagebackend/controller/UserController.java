@@ -1,6 +1,8 @@
 package com.bjtu.warehousemanagebackend.controller;
 
+import com.bjtu.warehousemanagebackend.entity.Provide;
 import com.bjtu.warehousemanagebackend.entity.User;
+import com.bjtu.warehousemanagebackend.service.impl.ProvideServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.bjtu.warehousemanagebackend.service.impl.UserServiceImpl;
+
+import java.util.List;
 
 /**
  * <p>
@@ -24,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private ProvideServiceImpl iProvideService;
 
     //注册用户
     @PostMapping
@@ -48,11 +55,24 @@ public class UserController {
         return new ResponseEntity<>(Result.success(userService.list()), HttpStatus.OK);
     }
 
+    //获取customer
+    @GetMapping("/{id}/type")
+    public ResponseEntity<Result> getOneType(@PathVariable String id, @RequestParam String type){
+        return new ResponseEntity<>(Result.success(userService.getById(id)), HttpStatus.OK);
+    }
+
     //获取用户信息
     //todo:分页
     @GetMapping("/{id}")
     public ResponseEntity<Result> getOne(@PathVariable String id){
         return new ResponseEntity<>(Result.success(userService.getById(id)), HttpStatus.OK);
+    }
+
+    // Search provides by uId
+    @GetMapping("/{uid}/provide")
+    public ResponseEntity<Result> searchProvideByuId(@PathVariable String uid) {
+        List<Provide> provides = iProvideService.getByuId(uid);
+        return new ResponseEntity<>(Result.success(provides), HttpStatus.OK);
     }
 
 }
