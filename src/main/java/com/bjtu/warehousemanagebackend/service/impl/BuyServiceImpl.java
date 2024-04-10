@@ -1,12 +1,10 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bjtu.warehousemanagebackend.entity.Buy;
 import com.bjtu.warehousemanagebackend.mapper.BuyMapper;
 import com.bjtu.warehousemanagebackend.service.IBuyService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,4 +35,5 @@ public class BuyServiceImpl extends ServiceImpl<BuyMapper, Buy> implements IBuyS
 
         return listObjs(wrapper);
     }
+
 }

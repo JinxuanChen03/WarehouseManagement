@@ -18,4 +18,5 @@ public interface IWarehouseService extends IService<Warehouse> {
 
     void deleteWarehouse(String id);
 
+    Warehouse getWarehouseById(String id);
 }

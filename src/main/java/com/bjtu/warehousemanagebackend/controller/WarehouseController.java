@@ -54,7 +54,7 @@ public class WarehouseController {
     // GET请求：获取指定id的仓库信息
     @GetMapping("/{id}")
     public ResponseEntity<Result> getWarehouseById(@PathVariable("id") String id) {
-        Warehouse warehouse = warehouseService.getById(id);
+        Warehouse warehouse = warehouseService.getWarehouseById(id);
         return new ResponseEntity<>(Result.success(warehouse), HttpStatus.OK);
     }
 

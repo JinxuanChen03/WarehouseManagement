@@ -1,7 +1,6 @@
 package com.bjtu.warehousemanagebackend.config;
 
 import com.bjtu.warehousemanagebackend.filter.JwtAuthenticationTokenFilter;
-import com.bjtu.warehousemanagebackend.filter.MyLoginFilter;
 import com.bjtu.warehousemanagebackend.utils.MyAuthenticationHandler;
 import com.bjtu.warehousemanagebackend.utils.MyRememberMeService;
 import lombok.RequiredArgsConstructor;
@@ -26,11 +25,11 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
-
-    @Autowired
-    private MyAuthenticationHandler myAuthenticationHandler;
+//    @Autowired
+//    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+//
+//    @Autowired
+//    private MyAuthenticationHandler myAuthenticationHandler;
 
     /**
      * 获取AuthenticationManager（认证管理器），登录时认证使用
@@ -51,28 +50,30 @@ public class SecurityConfig {
         return tokenRepository;
     }
 
+    //todo: filter
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http,
-                                            MyLoginFilter loginFilter,
+                                            JwtAuthenticationTokenFilter loginFilter,
                                             MyAuthenticationHandler authenticationHandler,
                                             MyRememberMeService rememberMeServices) throws Exception {
         //路径配置
         http
-                .authorizeHttpRequests(auth -> auth
+//                .authorizeHttpRequests(auth -> auth
                         // 对于登录接口 允许匿名访问
-                        .requestMatchers("/user/*").permitAll()
+//                        .requestMatchers("").permitAll()
                         // 除上面外的所有请求全部需要鉴权认证
-                        .anyRequest().authenticated())
+//                        .anyRequest().authenticated())
                 .formLogin(form -> form.loginProcessingUrl("/login")
                         .usernameParameter("name")
                         .passwordParameter("password"))
 
                 //csrf验证 存储到Cookie中
-                .csrf(csrf -> csrf
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()))
-                .rememberMe(re -> re
-                        .rememberMeServices(rememberMeServices))
+//                .csrf(csrf -> csrf
+//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()))
+//                .rememberMe(re -> re
+//                        .rememberMeServices(rememberMeServices))
+                .csrf(csrf -> csrf.disable())
 
                 //会话管理
                 .sessionManagement(session -> session
