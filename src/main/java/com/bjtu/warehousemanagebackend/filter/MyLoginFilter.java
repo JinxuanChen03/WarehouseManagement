@@ -1,6 +1,6 @@
 package com.bjtu.warehousemanagebackend.filter;
 
-import com.bjtu.warehousemanagebackend.service.Impl.RememberMeServiceImpl;
+import com.bjtu.warehousemanagebackend.utils.MyRememberMeService;
 import com.bjtu.warehousemanagebackend.utils.MyAuthenticationHandler;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -29,7 +28,7 @@ public class MyLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     public MyLoginFilter(AuthenticationManager authenticationManager,
                          MyAuthenticationHandler authenticationHandler,
-                         RememberMeServiceImpl rememberMeServices) throws Exception {
+                         MyRememberMeService rememberMeServices) throws Exception {
         super(authenticationManager);
         //验证码
 //        setAuthenticationFailureHandler(authenticationHandler);
@@ -61,7 +60,7 @@ public class MyLoginFilter extends UsernamePasswordAuthenticationFilter {
                 username = map.get(getUsernameParameter());
                 password = map.get(getPasswordParameter());
 //                verifyCode = map.get(VERIFY_CODE_KEY);
-                rememberMe = map.get(RememberMeServiceImpl.REMEMBER_ME_KEY);
+                rememberMe = map.get(MyRememberMeService.REMEMBER_ME_KEY);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -69,7 +68,7 @@ public class MyLoginFilter extends UsernamePasswordAuthenticationFilter {
             username = obtainUsername(request);
             password = obtainPassword(request);
 //            verifyCode = request.getParameter(VERIFY_CODE_KEY);
-            rememberMe = request.getParameter(RememberMeServiceImpl.REMEMBER_ME_KEY);
+            rememberMe = request.getParameter(MyRememberMeService.REMEMBER_ME_KEY);
         }
         //校验验证码
 //        final String vc = (String) request.getSession().getAttribute(VERIFY_CODE_KEY);
@@ -83,7 +82,7 @@ public class MyLoginFilter extends UsernamePasswordAuthenticationFilter {
 
         //将 rememberMe 状态存入 attr中
         if (!ObjectUtils.isEmpty(rememberMe)) {
-            request.setAttribute(RememberMeServiceImpl.REMEMBER_ME_KEY, rememberMe);
+            request.setAttribute(MyRememberMeService.REMEMBER_ME_KEY, rememberMe);
         }
 
         username = (username != null) ? username.trim() : "";

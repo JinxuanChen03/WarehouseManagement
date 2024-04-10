@@ -1,5 +1,6 @@
-package com.bjtu.warehousemanagebackend.service.Impl;
+package com.bjtu.warehousemanagebackend.utils;
 
+import com.bjtu.warehousemanagebackend.service.Impl.UserDetailsServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
@@ -9,11 +10,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class RememberMeServiceImpl extends PersistentTokenBasedRememberMeServices {
+public class MyRememberMeService extends PersistentTokenBasedRememberMeServices {
     public static final String REMEMBER_ME_KEY = "rememberMe";
     public static final List<String> TRUE_VALUES = List.of("true", "yes", "on", "1");
 
-    public RememberMeServiceImpl(UserDetailsServiceImpl userDetailsService, PersistentTokenRepository tokenRepository) {
+    public MyRememberMeService(UserDetailsServiceImpl userDetailsService, PersistentTokenRepository tokenRepository) {
         super(UUID.randomUUID().toString(), userDetailsService, tokenRepository);
     }
 
