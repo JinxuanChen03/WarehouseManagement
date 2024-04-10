@@ -6,7 +6,7 @@ import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bjtu.warehousemanagebackend.service.Impl.UserDetailsServiceImpl;
+import com.bjtu.warehousemanagebackend.service.impl.UserDetailsServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.JwtUtil;
 import com.bjtu.warehousemanagebackend.utils.LoginUser;
 import com.bjtu.warehousemanagebackend.utils.RedisCache;
