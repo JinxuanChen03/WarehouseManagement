@@ -1,7 +1,10 @@
 package com.bjtu.warehousemanagebackend.service;
 
+import com.bjtu.warehousemanagebackend.annotation.CurrentUser;
 import com.bjtu.warehousemanagebackend.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.HashMap;
 
 /**
  * <p>
@@ -14,4 +17,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface IUserService extends IService<User> {
 
     String getPermission(String id);
+
+    void register(User newUser);
+
+    void logout();
+
+    HashMap<String,String> login(User user);
+
 }

@@ -49,15 +49,15 @@ public class UserDetailsServiceImpl extends ServiceImpl<UserMapper, User> implem
         String encodePassword = passwordEncoder.encode(newPassword);
 
         //更新用户密码
-        User loginUser = userService.getById(user.getUsername());
-        loginUser.setPassword(encodePassword);
-        userService.updateById(loginUser);
+        User nowUser = userService.getById(user.getUsername());
+        nowUser.setPassword(encodePassword);
+        userService.updateById(nowUser);
 
         List<String> permissionKeyList =
                 Collections.singletonList(
-                        String.valueOf(userService.getPermission(loginUser.getId())));
+                        String.valueOf(userService.getPermission(nowUser.getId())));
 
-        return new LoginUser(loginUser,permissionKeyList);
+        return new LoginUser(nowUser,permissionKeyList);
     }
 }
 
