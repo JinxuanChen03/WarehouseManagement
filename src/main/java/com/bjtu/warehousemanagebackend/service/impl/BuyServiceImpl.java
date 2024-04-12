@@ -2,9 +2,13 @@ package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.bjtu.warehousemanagebackend.entity.Buy;
+import com.bjtu.warehousemanagebackend.entity.Storage;
+import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import com.bjtu.warehousemanagebackend.mapper.BuyMapper;
 import com.bjtu.warehousemanagebackend.service.IBuyService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +23,9 @@ import java.util.List;
  */
 @Service
 public class BuyServiceImpl extends ServiceImpl<BuyMapper, Buy> implements IBuyService {
+
+    @Autowired
+    private StorageServiceImpl storageService;
 
     @Override
     public List<Buy> getOrderByUid(String uid) {
@@ -42,5 +49,18 @@ public class BuyServiceImpl extends ServiceImpl<BuyMapper, Buy> implements IBuyS
                 .eq(Buy::getUId,uid);
 
         return listObjs(wrapper);
+    }
+
+    public void buyGoods(Buy info) {
+        //库存不足，拒绝
+        List<Storage> list = storageService.getByGid(info.getGId());
+        Integer stocks = 0;
+        for (Storage s: list){
+            stocks += s.getStocks();
+        }
+        if(stocks < info.getPurchase()){
+            throw new ServiceException(HttpStatus.FORBIDDEN.value(), "库存不足");
+        }
+        updateById(info);
     }
 }

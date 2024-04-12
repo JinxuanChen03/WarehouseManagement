@@ -22,21 +22,22 @@ import java.util.List;
 @Service
 public class StorageServiceImpl extends ServiceImpl<StorageMapper, Storage> implements IStorageService {
 
-    @Autowired
-    private StorageMapper storageMapper;
-
     @Override
-    public List<Storage> getBywId(String wId) {
-        return storageMapper.searchStoragersBywId(wId);
+    public List<Storage> getByWid(String wid) {
+        LambdaQueryWrapper<Storage> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Storage::getWId,wid);
+        return listObjs(wrapper);
     }
 
     @Override
-    public List<Storage> getByGid(String gId) {
-        return storageMapper.searchStoragersByGid(gId);
+    public List<Storage> getByGid(String gid) {
+        LambdaQueryWrapper<Storage> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Storage::getGId,gid);
+        return listObjs(wrapper);
     }
 
     @Override
-    public Storage getBywIdAndGid(String wid, String gid) {
+    public Storage getByWidAndGid(String wid, String gid) {
         LambdaQueryWrapper<Storage> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Storage::getWId,wid)
                 .eq(Storage::getGId,gid);

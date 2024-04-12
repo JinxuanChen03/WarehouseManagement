@@ -2,16 +2,4 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bjtu.warehousemanagebackend.mapper.StorageMapper">
 
-    <!-- 搜索供应商相关信息的三种方式 -->
-    <select id="searchStoragersBywId" resultType="com.bjtu.warehousemanagebackend.entity.Storage">
-        SELECT * FROM storage WHERE wId = #{wId}
-    </select>
-
-    <select id="searchStoragersByGid" resultType="com.bjtu.warehousemanagebackend.entity.Storage">
-        SELECT * FROM storage WHERE gId = #{gId}
-    </select>
-
-    <select id="searchStoragersBywIdAndGid" resultType="com.bjtu.warehousemanagebackend.entity.Storage">
-        SELECT * FROM storage WHERE wId = #{wId} AND gId = #{gId}
-    </select>
 </mapper>

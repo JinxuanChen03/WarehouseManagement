@@ -31,7 +31,7 @@ public class BuyController {
     public ResponseEntity<Result> buyGoods(@RequestParam String uid, @RequestParam String gid, @RequestBody @Valid Buy info){
         info.setUId(uid);
         info.setGId(gid);
-        buyService.updateById(info);
+        buyService.buyGoods(info);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
@@ -47,9 +47,5 @@ public class BuyController {
     public ResponseEntity<Result> queryPurchaseByWiAndGid(@RequestParam String uid, @RequestParam String gid) {
         return new ResponseEntity<>(Result.success(buyService.queryPurchaseByWiAndGid(uid, gid)), HttpStatus.OK);
     }
-
-
-
-
 
 }

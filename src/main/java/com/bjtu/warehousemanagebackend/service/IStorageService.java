@@ -15,9 +15,9 @@ import java.util.List;
  */
 public interface IStorageService extends IService<Storage> {
 
-    List<Storage> getBywId(String wId);
+    List<Storage> getByWid(String wid);
 
-    List<Storage> getByGid(String gId);
+    List<Storage> getByGid(String gid);
 
-    Storage getBywIdAndGid(String wid, String gid);
+    Storage getByWidAndGid(String wid, String gid);
 }

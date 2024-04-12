@@ -71,7 +71,7 @@ public class WarehouseController {
     // Search provides by wId
     @GetMapping("/{wid}/storage")
     public ResponseEntity<Result> searchStorageBywId(@PathVariable String wid) {
-        List<Storage> storage = storageService.getBywId(wid);
+        List<Storage> storage = storageService.getByWid(wid);
         return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
     }
 }
