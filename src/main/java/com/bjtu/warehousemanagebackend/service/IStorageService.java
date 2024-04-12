@@ -19,5 +19,5 @@ public interface IStorageService extends IService<Storage> {
 
     List<Storage> getByGid(String gId);
 
-    Storage getBywIdAndGid(String wId, String gId);
+    Storage getBywIdAndGid(String wid, String gid);
 }
