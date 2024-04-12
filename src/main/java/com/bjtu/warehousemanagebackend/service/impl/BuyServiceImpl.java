@@ -36,4 +36,11 @@ public class BuyServiceImpl extends ServiceImpl<BuyMapper, Buy> implements IBuyS
         return listObjs(wrapper);
     }
 
+    public List<Buy> queryPurchaseByWiAndGid(String uid, String gid) {
+        LambdaQueryWrapper<Buy> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Buy::getGId,gid)
+                .eq(Buy::getUId,uid);
+
+        return listObjs(wrapper);
+    }
 }

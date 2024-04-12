@@ -1,12 +1,10 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
-import com.bjtu.warehousemanagebackend.annotation.CurrentUser;
 import com.bjtu.warehousemanagebackend.entity.User;
 import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bjtu.warehousemanagebackend.service.impl.UserDetailsServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.JwtUtil;
 import com.bjtu.warehousemanagebackend.utils.LoginUser;
 import com.bjtu.warehousemanagebackend.utils.RedisCache;
@@ -20,7 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -35,16 +32,10 @@ import java.util.Objects;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Autowired
-    private UserMapper qaqMapper;
-
-    @Autowired
     private RedisCache redisCache;
 
     @Autowired
     private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
 
     @Override
     public String getPermission(String id){

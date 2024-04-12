@@ -2,7 +2,6 @@ package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.bjtu.warehousemanagebackend.entity.Goods;
-import com.bjtu.warehousemanagebackend.entity.Warehouse;
 import com.bjtu.warehousemanagebackend.mapper.GoodsMapper;
 import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.service.IGoodsService;
@@ -22,9 +21,6 @@ import java.util.List;
  */
 @Service
 public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements IGoodsService {
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Override
     public void deleteGoods(String id) {

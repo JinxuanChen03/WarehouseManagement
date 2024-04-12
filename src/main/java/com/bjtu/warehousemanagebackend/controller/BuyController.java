@@ -1,6 +1,7 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 import com.bjtu.warehousemanagebackend.entity.Buy;
+import com.bjtu.warehousemanagebackend.entity.Storage;
 import com.bjtu.warehousemanagebackend.service.impl.BuyServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
@@ -41,18 +42,14 @@ public class BuyController {
         return new ResponseEntity<>(Result.success(buyService.list()), HttpStatus.OK);
     }
 
-    // 具体一个人的购买记录
-    @GetMapping("/{uid}/purchase")
-    public ResponseEntity<Result> getOrderByUid(@PathVariable String uid) {
-        List<Buy> buy = buyService.getOrderByUid(uid);
-        return new ResponseEntity<>(Result.success(buy), HttpStatus.OK);
+    //uid,gid查购买记录
+    @GetMapping
+    public ResponseEntity<Result> queryPurchaseByWiAndGid(@RequestParam String uid, @RequestParam String gid) {
+        return new ResponseEntity<>(Result.success(buyService.queryPurchaseByWiAndGid(uid, gid)), HttpStatus.OK);
     }
 
-    // 具体一个商品的被购买记录
-    @GetMapping("/goods/{gid}/purchase")
-    public ResponseEntity<Result> getOrderByGid(@PathVariable String gid) {
-        List<Buy> buy = buyService.getOrderByGid(gid);
-        return new ResponseEntity<>(Result.success(buy), HttpStatus.OK);
-    }
+
+
+
 
 }

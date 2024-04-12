@@ -3,7 +3,6 @@ package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.bjtu.warehousemanagebackend.entity.Storage;
 import com.bjtu.warehousemanagebackend.mapper.StorageMapper;
-import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.service.IStorageService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,6 @@ import java.util.List;
  */
 @Service
 public class StorageServiceImpl extends ServiceImpl<StorageMapper, Storage> implements IStorageService {
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Autowired
     private StorageMapper storageMapper;

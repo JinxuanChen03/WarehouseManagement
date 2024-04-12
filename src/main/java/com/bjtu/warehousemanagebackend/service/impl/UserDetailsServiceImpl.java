@@ -1,6 +1,5 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bjtu.warehousemanagebackend.entity.User;
 import com.bjtu.warehousemanagebackend.exception.ServiceException;
@@ -14,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.bjtu.warehousemanagebackend.service.impl.UserServiceImpl;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,9 +20,6 @@ import java.util.Objects;
 
 @Service
 public class UserDetailsServiceImpl extends ServiceImpl<UserMapper, User> implements UserDetailsService,UserDetailsPasswordService {
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Autowired
     private UserServiceImpl userService;

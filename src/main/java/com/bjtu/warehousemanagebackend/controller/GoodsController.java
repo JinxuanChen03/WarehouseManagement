@@ -1,10 +1,14 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 
+import com.bjtu.warehousemanagebackend.entity.Buy;
 import com.bjtu.warehousemanagebackend.entity.Goods;
 import com.bjtu.warehousemanagebackend.entity.Provide;
+import com.bjtu.warehousemanagebackend.entity.Storage;
+import com.bjtu.warehousemanagebackend.service.impl.BuyServiceImpl;
 import com.bjtu.warehousemanagebackend.service.impl.GoodsServiceImpl;
 import com.bjtu.warehousemanagebackend.service.impl.ProvideServiceImpl;
+import com.bjtu.warehousemanagebackend.service.impl.StorageServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +30,21 @@ import java.util.List;
 @RequestMapping("/goods")
 public class GoodsController {
     @Autowired
-    private GoodsServiceImpl iGoodsService;
+    private GoodsServiceImpl goodsService;
 
     @Autowired
-    private ProvideServiceImpl iProvideService;
+    private ProvideServiceImpl provideService;
+
+    @Autowired
+    private StorageServiceImpl storageService;
+
+    @Autowired
+    private BuyServiceImpl buyService;
 
     //新增一个仓库
     @PostMapping
     public ResponseEntity<Result> addGoods(@RequestBody @Valid Goods good){
-        iGoodsService.save(good);
+        goodsService.save(good);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
@@ -42,35 +52,49 @@ public class GoodsController {
     @PutMapping("/{id}")
     public ResponseEntity<Result> updateGoods(@PathVariable("id") String id, @RequestBody @Valid Goods good) {
         good.setId(id); // 设置要更新的仓库的id
-        iGoodsService.updateById(good);
+        goodsService.updateById(good);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
     // DELETE请求：逻辑删除指定id的仓库
     @DeleteMapping("/{id}")
     public ResponseEntity<Result> deleteGoods(@PathVariable("id") String id) {
-        iGoodsService.deleteGoods(id);
+        goodsService.deleteGoods(id);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
     // GET请求：获取指定id的仓库信息
     @GetMapping("/{id}")
     public ResponseEntity<Result> getGoodsById(@PathVariable("id") String id) {
-        Goods good = iGoodsService.getGoodsById(id);
+        Goods good = goodsService.getGoodsById(id);
         return new ResponseEntity<>(Result.success(good), HttpStatus.OK);
     }
 
     // GET请求：获取所有仓库信息
     @GetMapping
     public ResponseEntity<Result> getAllGoods() {
-        List<Goods> goods = iGoodsService.getAllGoods();
+        List<Goods> goods = goodsService.getAllGoods();
         return new ResponseEntity<>(Result.success(goods), HttpStatus.OK);
     }
 
     @GetMapping("/{gid}/provide")
     public ResponseEntity<Result> searchProvideByGid(@PathVariable String gid) {
-        List<Provide> provides = iProvideService.getByGid(gid);
+        List<Provide> provides = provideService.getByGid(gid);
         return new ResponseEntity<>(Result.success(provides), HttpStatus.OK);
+    }
+
+    // Search provides by gid
+    @GetMapping("/{gid}/storage")
+    public ResponseEntity<Result> searchStorageByGid(@PathVariable String gid) {
+        List<Storage> storage = storageService.getByGid(gid);
+        return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
+    }
+
+    // 具体一个商品的被购买记录
+    @GetMapping("/{gid}/purchase")
+    public ResponseEntity<Result> getOrderByGid(@PathVariable String gid) {
+        List<Buy> buy = buyService.getOrderByGid(gid);
+        return new ResponseEntity<>(Result.success(buy), HttpStatus.OK);
     }
 
 }

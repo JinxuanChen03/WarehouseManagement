@@ -24,4 +24,6 @@ public interface IProvideService extends IService<Provide> {
 
 
     void updateProvide(Provide provide);
+
+    Provide getByUidAndGid(String uid, String gid);
 }

@@ -23,26 +23,25 @@ import org.springframework.web.bind.annotation.*;
 public class ProvideController {
 
     @Autowired
-    private ProvideServiceImpl iProvideService;
+    private ProvideServiceImpl provideService;
 
     //供货商供应商品，增一条
     @PostMapping
     public ResponseEntity<Result> addProvide(@RequestBody @Valid Provide provide){
-        iProvideService.save(provide);
+        provideService.save(provide);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
-    // Search provides by uId and gid
+    // Search provides by uid and gid
     @GetMapping
-    public ResponseEntity<Result> searchProvideByuIdAndGid(@RequestParam String uid, @RequestParam String gid) {
-        Provide provide = iProvideService.getByuIdAndGid(uid, gid);
-        return new ResponseEntity<>(Result.success(provide), HttpStatus.OK);
+    public ResponseEntity<Result> getByUidAndGid(@RequestParam String uid, @RequestParam String gid) {
+        return new ResponseEntity<>(Result.success(provideService.getByUidAndGid(uid, gid)), HttpStatus.OK);
     }
 
     //改，增，减,增删数量
     @PutMapping
     public ResponseEntity<Result> updateProvide(@RequestBody Provide provide) {
-        iProvideService.updateProvide(provide);
+        provideService.updateProvide(provide);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 

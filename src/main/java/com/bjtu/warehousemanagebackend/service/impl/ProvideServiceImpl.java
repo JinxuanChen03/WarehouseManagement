@@ -1,8 +1,9 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.bjtu.warehousemanagebackend.entity.Provide;
 import com.bjtu.warehousemanagebackend.mapper.ProvideMapper;
-import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.service.IProvideService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,6 @@ import java.util.List;
 public class ProvideServiceImpl extends ServiceImpl<ProvideMapper, Provide> implements IProvideService {
 
     @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
     private ProvideMapper provideMapper;
 
     @Override
@@ -42,8 +40,21 @@ public class ProvideServiceImpl extends ServiceImpl<ProvideMapper, Provide> impl
         return provideMapper.searchProvidersByUid();
     }
 
+
     @Override
-    public void updateProvide(String uId, String gId) {
-        provideMapper.updateProvide(uId,gId);
+    public void updateProvide(Provide info) {
+        LambdaUpdateWrapper<Provide> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.eq(Provide::getUId,info.getUId())
+                .eq(Provide::getGId,info.getGId())
+                .set(Provide::getSupply,info.getSupply());
+        update(wrapper);
+    }
+
+    @Override
+    public Provide getByUidAndGid(String uid, String gid) {
+        LambdaQueryWrapper<Provide> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Provide::getUId,uid)
+                .eq(Provide::getGId,gid);
+        return getOne(wrapper);
     }
 }
