@@ -18,13 +18,20 @@ public class LogController {
     @Autowired
     private UserServiceImpl userService;
 
-    //登录用户
+    /**
+     * 登录用户
+     * @param user
+     * @return
+     */
     @PostMapping("/login")
     public ResponseEntity<Result> login(@RequestBody @Valid User user){
         return new ResponseEntity<>(Result.success(userService.login(user)), HttpStatus.OK);
     }
 
-    //登出用户
+    /**
+     * 登出用户
+     * @return
+     */
     @DeleteMapping("/logout")
     public ResponseEntity<Result> logout(){
         userService.logout();
