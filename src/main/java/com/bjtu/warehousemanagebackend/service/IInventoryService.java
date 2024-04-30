@@ -19,5 +19,5 @@ public interface IInventoryService extends IService<Inventory> {
 
     List<Inventory> findByWarehouse(String id);
 
-    List<Inventory> findByCommodityId(String id);
+    List<Inventory> findByGoodsId(String id);
 }

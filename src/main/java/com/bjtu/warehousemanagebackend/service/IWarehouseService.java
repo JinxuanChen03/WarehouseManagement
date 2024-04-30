@@ -18,4 +18,14 @@ public interface IWarehouseService extends IService<Warehouse> {
     void deleteWarehouse(String id);
 
     Warehouse getWarehouseById(String id);
+
+    Warehouse getWarehouseByName(String name);
+
+    void addWareHouse(Warehouse warehouse);
+
+    void updateWarehouse(Warehouse warehouse);
+
+    List<Warehouse> searchByName(String name);
+
+    List<Warehouse> getAll();
 }

@@ -28,17 +28,16 @@ public class Warehouse implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "仓库号")
-    @TableId(value = "id", type = IdType.ASSIGN_UUID)
+    @TableId(value = "id", type = IdType.AUTO)
     private String id;
 
     private String name;
 
-    private String addr;
+    private String createAt;
 
-    @ApiModelProperty(value = "总库存量")
-    private Integer stocks;
+    private String updateAt;
 
-    private Boolean deleted;
+    private Integer principle;
 
 
 }

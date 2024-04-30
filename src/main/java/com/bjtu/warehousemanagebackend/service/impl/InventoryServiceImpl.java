@@ -33,7 +33,7 @@ public class InventoryServiceImpl extends ServiceImpl<InventoryMapper, Inventory
     }
 
     @Override
-    public List<Inventory> findByCommodityId(String id) {
+    public List<Inventory> findByGoodsId(String id) {
         LambdaQueryWrapper<Inventory> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Inventory::getCid,id);
         return listObjs(wrapper);

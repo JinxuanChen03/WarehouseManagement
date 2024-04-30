@@ -26,45 +26,70 @@ public class GoodsController {
     @Autowired
     private GoodsServiceImpl goodsService;
 
-    //新增一个仓库
+    /**
+     * 新增货物品类
+     * @param good
+     * @return
+     */
     @PostMapping
     public ResponseEntity<Result> addGoods(@RequestBody @Valid Goods good){
-        goodsService.save(good);
+        goodsService.addGoods(good);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
-    // PUT请求：更新指定id的仓库信息
+    /**
+     * 更新货物信息
+     * @param id
+     * @param good
+     * @return
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Result> updateGoods(@PathVariable("id") String id, @RequestBody @Valid Goods good) {
         good.setId(id); // 设置要更新的仓库的id
-        goodsService.updateById(good);
+        goodsService.updateGoods(good);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
-    // DELETE请求：逻辑删除指定id的仓库
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Result> deleteGoods(@PathVariable("id") String id) {
-        goodsService.deleteGoods(id);
-        return new ResponseEntity<>(Result.success(), HttpStatus.OK);
-    }
-
-    // GET请求：获取指定id的仓库信息
+    /**
+     * 获取一个货物
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Result> getGoodsById(@PathVariable("id") String id) {
         Goods good = goodsService.getGoodsById(id);
         return new ResponseEntity<>(Result.success(good), HttpStatus.OK);
     }
 
+    /**
+     * 模糊搜索货物名称
+     * @param name
+     * @return
+     */
     @GetMapping("/search/{name}")
     public ResponseEntity<Result>  findByLikeName(@PathVariable String name) {
         return new ResponseEntity<>(Result.success(goodsService.findByLikeName(name)), HttpStatus.OK);
     }
 
-    // GET请求：获取所有仓库信息
+    /**
+     * 获取全部货物
+     * @return
+     */
     @GetMapping
     public ResponseEntity<Result> getAllGoods() {
         List<Goods> goods = goodsService.getAllGoods();
         return new ResponseEntity<>(Result.success(goods), HttpStatus.OK);
+    }
+
+    /**
+     * 删除货物
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Result> deleteGoods(@PathVariable("id") String id) {
+        goodsService.deleteGoods(id);
+        return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
 }

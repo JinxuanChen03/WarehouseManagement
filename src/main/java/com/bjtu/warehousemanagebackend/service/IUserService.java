@@ -5,6 +5,7 @@ import com.bjtu.warehousemanagebackend.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -25,4 +26,16 @@ public interface IUserService extends IService<User> {
     HashMap<String,String> login(User user);
 
     User getByName(String name);
+
+    List<User> getAllAdmin();
+
+    User getOneAdmin(String id);
+
+    boolean hasSuperAdmin();
+
+    void initSuperAdmin();
+
+    void resetPassword(String id, String password);
+
+    void deleteOneAdmin(String id);
 }

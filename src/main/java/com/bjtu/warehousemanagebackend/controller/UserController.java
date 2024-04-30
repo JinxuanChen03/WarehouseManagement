@@ -21,40 +21,64 @@ import java.util.List;
  * @since 2024-04-09
  */
 @RestController
-//@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
 
-    //注册用户
+    /**
+     * 注册用户
+     * @param newUser
+     * @return
+     */
     @PostMapping
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_ADMIN')")
     public ResponseEntity<Result> register(@RequestBody @Valid User newUser){
         userService.register(newUser);
         return new ResponseEntity<>((Result.success()),HttpStatus.OK);
     }
 
-    //更新用户数据
+    /**
+     * 重置用户密码
+     * @param id
+     * @param password
+     * @return
+     */
     @PutMapping("/{id}")
-    public ResponseEntity<Result> updateUserInfo(@PathVariable String id,@RequestBody @Valid User info){
-        info.setId(id);
-        userService.updateById(info);
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+    public ResponseEntity<Result> updateUserInfo(@PathVariable String id,@RequestParam String password){
+        userService.resetPassword(id,password);
         return new ResponseEntity<>((Result.success()),HttpStatus.OK);
     }
 
-    //todo:修改密码怎么办
-
-    //获取用户列表
+    /**
+     * 获取全部用户
+     * @return
+     */
     @GetMapping
     public ResponseEntity<Result> getAll(){
         return new ResponseEntity<>(Result.success(userService.list()), HttpStatus.OK);
     }
 
-    //获取用户信息
-    //todo:分页
+    /**
+     * 获取一个用户
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Result> getOne(@PathVariable String id){
         return new ResponseEntity<>(Result.success(userService.getById(id)), HttpStatus.OK);
+    }
+
+    /**
+     * 获取一个用户
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Result> getOneAdmin(@PathVariable String id){
+        return new ResponseEntity<>(Result.success(userService.getOneAdmin(id)), HttpStatus.OK);
     }
 
 }

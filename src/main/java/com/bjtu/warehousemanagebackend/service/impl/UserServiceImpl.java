@@ -2,10 +2,12 @@ package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.bjtu.warehousemanagebackend.entity.User;
+import com.bjtu.warehousemanagebackend.enums.Role;
 import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.bjtu.warehousemanagebackend.utils.DateTimeUtil;
 import com.bjtu.warehousemanagebackend.utils.JwtUtil;
 import com.bjtu.warehousemanagebackend.utils.LoginUser;
 import com.bjtu.warehousemanagebackend.utils.RedisCache;
@@ -19,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -45,9 +48,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public void register(User newUser) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodePassword = passwordEncoder.encode(newUser.getPassword());
-        newUser.setPassword(encodePassword);
+        if(getByName(newUser.getName()) != null)
+            throw new ServiceException(HttpStatus.FORBIDDEN.value(), "用户名已存在");
+        newUser.setPassword(encodePassword(newUser.getPassword()));
+        newUser.setCreateAt(DateTimeUtil.getNowTimeString());
         save(newUser);
     }
 
@@ -89,9 +93,67 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User getByName(String name) {
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(User::getName,name)
-                .eq(User::getDeleted,false);
+        wrapper.eq(User::getName,name);
         return getOne(wrapper);
     }
 
+    @Override
+    public List<User> getAllAdmin() {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getPermission, Role.ROLE_ADMIN.getValue());
+        return listObjs(wrapper);
+    }
+
+    @Override
+    public User getOneAdmin(String id) {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getPermission, Role.ROLE_ADMIN.getValue())
+                .eq(User::getId,id);
+        return getOne(wrapper);
+    }
+
+    @Override
+    public boolean hasSuperAdmin(){
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getPermission, Role.ROLE_SUPER_ADMIN.getValue());
+        User superAdmin = getOne(wrapper);
+        if(superAdmin == null)
+            return false;
+        else return true;
+    }
+
+    @Override
+    public void initSuperAdmin() {
+        //如果存在超级管理员，禁止操作
+        if(hasSuperAdmin())
+            throw new ServiceException(HttpStatus.FORBIDDEN.value(), "超级管理员已存在");
+        User superAdmin = new User();
+        superAdmin.setName("超级管理员");
+        superAdmin.setPassword(encodePassword("123"));
+        superAdmin.setPermission(Role.ROLE_SUPER_ADMIN.getValue());
+        superAdmin.setCreateAt(DateTimeUtil.getNowTimeString());
+        save(superAdmin);
+    }
+
+    private String encodePassword(String password){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.encode(password);
+    }
+
+    @Override
+    public void resetPassword(String id, String password) {
+        //todo：验证
+        User user = new User();
+        user.setId(id);
+        user.setPassword(encodePassword(password));
+        user.setUpdateAt(DateTimeUtil.getNowTimeString());
+        updateById(user);
+    }
+
+    @Override
+    public void deleteOneAdmin(String id) {
+        if(getOneAdmin(id) == null)
+            throw new ServiceException(HttpStatus.NOT_FOUND.value(), "该管理员不存在");
+        removeById(id);
+    }
 }

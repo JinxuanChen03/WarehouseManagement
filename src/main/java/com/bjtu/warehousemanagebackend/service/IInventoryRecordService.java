@@ -17,7 +17,7 @@ public interface IInventoryRecordService extends IService<InventoryRecord> {
 
     List<InventoryRecord> findAllByWarehouseId(String id);
 
-    List<InventoryRecord> findAllByCommodityId(String id);
+    List<InventoryRecord> findAllByGoodsId(String id);
 
     void in(InventoryRecord record);
 

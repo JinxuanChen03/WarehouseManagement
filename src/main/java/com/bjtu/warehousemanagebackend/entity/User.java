@@ -34,14 +34,9 @@ public class User implements Serializable {
 
     private String password;
 
-    private Integer phone;
-
-    private String addr;
-
-    @ApiModelProperty(value = "身份权限")
     private String permission;
 
-    private Boolean deleted;
+    private String createAt;
 
-
+    private String updateAt;
 }

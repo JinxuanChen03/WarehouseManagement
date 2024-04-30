@@ -12,13 +12,8 @@ public enum Role {
 
     ROLE_ADMIN("ROLE_ADMIN", "管理员"),
 
-    ROLE_COMMODITY("ROLE_COMMODITY", "商品"),
+    ROLE_COMMODITY("ROLE_User", "商品");
 
-    ROLE_EMPLOYEE("ROLE_EMPLOYEE", "员工"),
-
-    ROLE_SALE("ROLE_SALE", "销售"),
-
-    ROLE_WAREHOUSE("ROLE_WAREHOUSE", "仓库");
 
     private String per;
     private String desc;

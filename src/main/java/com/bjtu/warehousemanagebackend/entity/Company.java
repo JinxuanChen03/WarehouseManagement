@@ -30,5 +30,5 @@ public class Company implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private String id;
 
-
+    private String name;
 }

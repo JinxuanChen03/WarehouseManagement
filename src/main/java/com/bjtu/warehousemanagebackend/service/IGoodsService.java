@@ -20,4 +20,12 @@ public interface IGoodsService extends IService<Goods> {
     Goods getGoodsById(String id);
 
     List<Goods> getAllGoods();
+
+    List<Goods> findByLikeName(String name);
+
+    void addGoods(Goods good);
+
+    Goods getGoodsByName(String name);
+
+    void updateGoods(Goods good);
 }
