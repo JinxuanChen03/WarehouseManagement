@@ -2,9 +2,7 @@ package com.bjtu.warehousemanagebackend.controller;
 
 
 
-import com.bjtu.warehousemanagebackend.entity.Storage;
 import com.bjtu.warehousemanagebackend.entity.Warehouse;
-import com.bjtu.warehousemanagebackend.service.impl.StorageServiceImpl;
 import com.bjtu.warehousemanagebackend.service.impl.WarehouseServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.Result;
 import jakarta.validation.Valid;
@@ -12,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * <p>
@@ -28,9 +24,6 @@ import java.util.List;
 public class WarehouseController {
     @Autowired
     private WarehouseServiceImpl warehouseService;
-
-    @Autowired
-    private StorageServiceImpl storageService;
 
     //新增一个仓库
     @PostMapping
@@ -57,21 +50,12 @@ public class WarehouseController {
     // GET请求：获取指定id的仓库信息
     @GetMapping("/{id}")
     public ResponseEntity<Result> getWarehouseById(@PathVariable("id") String id) {
-        Warehouse warehouse = warehouseService.getWarehouseById(id);
-        return new ResponseEntity<>(Result.success(warehouse), HttpStatus.OK);
+        return new ResponseEntity<>(Result.success(warehouseService.getWarehouseById(id)), HttpStatus.OK);
     }
 
     // GET请求：获取所有仓库信息
     @GetMapping
-    public ResponseEntity<Result> getAllWarehouses() {
-        List<Warehouse> warehouses = warehouseService.list();
-        return new ResponseEntity<>(Result.success(warehouses), HttpStatus.OK);
-    }
-
-    // Search provides by wId
-    @GetMapping("/{wid}/storage")
-    public ResponseEntity<Result> searchStorageBywId(@PathVariable String wid) {
-        List<Storage> storage = storageService.getByWid(wid);
-        return new ResponseEntity<>(Result.success(storage), HttpStatus.OK);
+    public ResponseEntity<Result> getAll() {
+        return new ResponseEntity<>(Result.success(warehouseService.list()), HttpStatus.OK);
     }
 }

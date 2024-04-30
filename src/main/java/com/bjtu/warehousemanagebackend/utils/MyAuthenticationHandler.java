@@ -23,6 +23,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * 异常处理
+ */
 //AuthenticationSuccessHandler, AuthenticationFailureHandler验证码
 @Component
 public class MyAuthenticationHandler implements LogoutSuccessHandler, SessionInformationExpiredStrategy, AccessDeniedHandler, AuthenticationEntryPoint {
@@ -42,7 +45,7 @@ public class MyAuthenticationHandler implements LogoutSuccessHandler, SessionInf
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         String detailMessage = e.getClass().getSimpleName() + " " + e.getLocalizedMessage();
         if (e instanceof InsufficientAuthenticationException) {
-            detailMessage = "请登陆后再访问";
+            detailMessage = "密码错误请重新登录";
         }
 //        response.setContentType(APPLICATION_JSON_CHARSET_UTF_8);
 //        response.setStatus(HttpStatus.UNAUTHORIZED.value());

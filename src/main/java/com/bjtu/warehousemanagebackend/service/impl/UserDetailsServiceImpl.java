@@ -26,8 +26,9 @@ public class UserDetailsServiceImpl extends ServiceImpl<UserMapper, User> implem
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String id) {
-        User user = getById(id);
+    public UserDetails loadUserByUsername(String name) {
+//        User user = getById(id);
+        User user = userService.getByName(name);
         //如果查询不到数据就通过抛出异常来给出提示
         if(Objects.isNull(user)){
             throw new ServiceException(HttpStatus.FORBIDDEN.value(),"用户名或密码错误");

@@ -59,13 +59,13 @@ public class SecurityConfig {
         //路径配置
         http
 //                .authorizeHttpRequests(auth -> auth
-                        // 对于登录接口 允许匿名访问
-//                        .requestMatchers("").permitAll()
-                        // 除上面外的所有请求全部需要鉴权认证
+                         //对于登录接口 允许匿名访问
+//                        .requestMatchers("login").permitAll()
+                         //除上面外的所有请求全部需要鉴权认证
 //                        .anyRequest().authenticated())
-                .formLogin(form -> form.loginProcessingUrl("/login")
-                        .usernameParameter("name")
-                        .passwordParameter("password"))
+//                .formLogin(form -> form.loginProcessingUrl("/login")
+//                        .usernameParameter("name")
+//                        .passwordParameter("password"))
 
                 //csrf验证 存储到Cookie中
 //                .csrf(csrf -> csrf

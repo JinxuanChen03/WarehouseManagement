@@ -1,5 +1,6 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.bjtu.warehousemanagebackend.entity.User;
 import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import com.bjtu.warehousemanagebackend.mapper.UserMapper;
@@ -61,7 +62,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public HashMap<String,String> login(User user) {
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(user.getId(), user.getPassword());
+                new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword());
 
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
 
@@ -85,7 +86,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return map;
     }
 
+    @Override
+    public User getByName(String name) {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getName,name)
+                .eq(User::getDeleted,false);
+        return getOne(wrapper);
+    }
 
-//    public List<User> getAll() {
-//    }
 }

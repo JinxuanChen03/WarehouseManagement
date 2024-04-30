@@ -12,36 +12,27 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 货物
+ * 
  * </p>
  *
  * @author Jinxuan Chen
- * @since 2024-04-09
+ * @since 2024-04-30
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("goods")
-@ApiModel(value="Goods对象", description="货物")
-public class Goods implements Serializable {
+@TableName("code")
+@ApiModel(value="Code对象", description="")
+public class Code implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "货号")
-    @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    @TableId(value = "email", type = IdType.AUTO)
+    private String email;
 
-    private Integer count;
+    private Long exp;
 
-    private String createAt;
-
-    private String description;
-
-    private String name;
-
-    private Double price;
-
-    private String updateAt;
+    private String value;
 
 
 }

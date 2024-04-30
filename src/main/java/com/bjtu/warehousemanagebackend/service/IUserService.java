@@ -24,4 +24,5 @@ public interface IUserService extends IService<User> {
 
     HashMap<String,String> login(User user);
 
+    User getByName(String name);
 }

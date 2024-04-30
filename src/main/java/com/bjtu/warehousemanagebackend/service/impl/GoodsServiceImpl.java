@@ -24,23 +24,22 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
 
     @Override
     public void deleteGoods(String id) {
-        Goods good = getById(id);
-        good.setDeleted(true);
-        updateById(good);
+        removeById(id);
     }
 
     @Override
     public Goods getGoodsById(String id) {
-        LambdaQueryWrapper<Goods> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Goods::getId,id)
-                .eq(Goods::getDeleted,false);
-        return getOne(wrapper);
+        return getById(id);
     }
 
     @Override
     public List<Goods> getAllGoods() {
+        return list();
+    }
+
+    public List<Goods> findByLikeName(String name) {
         LambdaQueryWrapper<Goods> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Goods::getDeleted,false);
+        wrapper.like(Goods::getName,name);
         return listObjs(wrapper);
     }
 }
