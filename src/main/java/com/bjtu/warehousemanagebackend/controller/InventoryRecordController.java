@@ -9,14 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author Jinxuan Chen
- * @since 2024-04-30
- */
 @RestController
 @RequestMapping("/record")
 public class InventoryRecordController {
@@ -30,6 +22,7 @@ public class InventoryRecordController {
      * @return
      */
     @PostMapping("/in")
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
     public ResponseEntity<Result> in(@RequestBody InventoryRecord record) {
         recordService.in(record);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
@@ -41,6 +34,7 @@ public class InventoryRecordController {
      * @return
      */
     @PostMapping("/out")
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
     public ResponseEntity<Result> out(@RequestBody InventoryRecord record) {
         recordService.out(record);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);

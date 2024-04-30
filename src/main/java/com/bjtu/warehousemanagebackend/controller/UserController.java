@@ -10,16 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.bjtu.warehousemanagebackend.service.impl.UserServiceImpl;
 
-import java.util.List;
-
-/**
- * <p>
- * 用户表 前端控制器
- * </p>
- *
- * @author Jinxuan Chen
- * @since 2024-04-09
- */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -69,16 +59,6 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<Result> getOne(@PathVariable String id){
         return new ResponseEntity<>(Result.success(userService.getById(id)), HttpStatus.OK);
-    }
-
-    /**
-     * 获取一个用户
-     * @param id
-     * @return
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<Result> getOneAdmin(@PathVariable String id){
-        return new ResponseEntity<>(Result.success(userService.getOneAdmin(id)), HttpStatus.OK);
     }
 
 }

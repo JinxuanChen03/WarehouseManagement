@@ -1,7 +1,7 @@
 package com.bjtu.warehousemanagebackend.service;
 
-import com.bjtu.warehousemanagebackend.entity.InventoryRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.bjtu.warehousemanagebackend.entity.InventoryRecord;
 
 import java.util.List;
 

@@ -11,14 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author Jinxuan Chen
- * @since 2024-04-30
- */
 @RestController
 @RequestMapping("/admin")
 public class AdminController {

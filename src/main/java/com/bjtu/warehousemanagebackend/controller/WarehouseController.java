@@ -11,14 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * <p>
- * 仓库 前端控制器
- * </p>
- *
- * @author Jinxuan Chen
- * @since 2024-04-09
- */
 @RestController
 @RequestMapping("/warehouses")
 public class WarehouseController {
@@ -31,6 +23,7 @@ public class WarehouseController {
      * @return
      */
     @PostMapping
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
     public ResponseEntity<Result> addWareHouse(@RequestBody @Valid Warehouse warehouse){
         warehouseService.addWareHouse(warehouse);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
@@ -43,6 +36,7 @@ public class WarehouseController {
      * @return
      */
     @PutMapping("/{id}")
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
     public ResponseEntity<Result> updateWarehouse(@PathVariable("id") String id, @RequestBody @Valid Warehouse warehouse) {
         warehouse.setId(id);
         warehouseService.updateWarehouse(warehouse);
@@ -84,6 +78,7 @@ public class WarehouseController {
      * @return
      */
     @DeleteMapping("/{id}")
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
     public ResponseEntity<Result> deleteWarehouse(@PathVariable("id") String id) {
         warehouseService.deleteWarehouse(id);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);

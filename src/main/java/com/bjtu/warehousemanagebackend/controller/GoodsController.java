@@ -12,14 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * <p>
- * 货物 前端控制器
- * </p>
- *
- * @author Jinxuan Chen
- * @since 2024-04-09
- */
 @RestController
 @RequestMapping("/goods")
 public class GoodsController {
@@ -32,6 +24,7 @@ public class GoodsController {
      * @return
      */
     @PostMapping
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
     public ResponseEntity<Result> addGoods(@RequestBody @Valid Goods good){
         goodsService.addGoods(good);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
@@ -44,6 +37,7 @@ public class GoodsController {
      * @return
      */
     @PutMapping("/{id}")
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
     public ResponseEntity<Result> updateGoods(@PathVariable("id") String id, @RequestBody @Valid Goods good) {
         good.setId(id); // 设置要更新的仓库的id
         goodsService.updateGoods(good);
@@ -87,6 +81,7 @@ public class GoodsController {
      * @return
      */
     @DeleteMapping("/{id}")
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
     public ResponseEntity<Result> deleteGoods(@PathVariable("id") String id) {
         goodsService.deleteGoods(id);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);

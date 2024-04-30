@@ -1,7 +1,7 @@
 package com.bjtu.warehousemanagebackend.service;
 
-import com.bjtu.warehousemanagebackend.entity.Company;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.bjtu.warehousemanagebackend.entity.Company;
 
 /**
  * <p>

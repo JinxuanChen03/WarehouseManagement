@@ -63,7 +63,7 @@ public class InventoryRecordServiceImpl extends ServiceImpl<InventoryRecordMappe
             inventory.setCid(record.getCid());
             inventory.setWid(record.getWid());
             inventory.setCount(0);
-            inventory.setName(record.getName());
+            inventory.setDescription(record.getDescription());
         }
 
         inventory.setCount(inventory.getCount()+ record.getCount());

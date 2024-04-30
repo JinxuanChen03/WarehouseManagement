@@ -1,8 +1,7 @@
 package com.bjtu.warehousemanagebackend.service;
 
-import com.bjtu.warehousemanagebackend.annotation.CurrentUser;
-import com.bjtu.warehousemanagebackend.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.bjtu.warehousemanagebackend.entity.User;
 
 import java.util.HashMap;
 import java.util.List;
