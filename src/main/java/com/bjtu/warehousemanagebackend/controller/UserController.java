@@ -1,15 +1,23 @@
 package com.bjtu.warehousemanagebackend.controller;
 
-import com.bjtu.warehousemanagebackend.domain.User;
+
 import com.bjtu.warehousemanagebackend.domain.Result;
-import jakarta.validation.Valid;
+import com.bjtu.warehousemanagebackend.domain.User;
+import com.bjtu.warehousemanagebackend.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.bjtu.warehousemanagebackend.service.impl.UserServiceImpl;
-
+/**
+ * <p>
+ *  前端控制器
+ * </p>
+ *
+ * @author Jinxuan Chen
+ * @since 2024-05-10
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -18,27 +26,28 @@ public class UserController {
     private UserServiceImpl userService;
 
     /**
-     * 注册用户
-     * @param newUser
-     * @return
-     */
-    @PostMapping
-//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_ADMIN')")
-    public ResponseEntity<Result> register(@RequestBody @Valid User newUser){
-        userService.register(newUser);
-        return new ResponseEntity<>((Result.success()),HttpStatus.OK);
-    }
-
-    /**
      * 重置用户密码
      * @param id
      * @param password
      * @return
      */
-    @PutMapping("/{id}")
-//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_ADMIN')")
-    public ResponseEntity<Result> updateUserInfo(@PathVariable String id,@RequestParam String password){
+    @PutMapping("/security/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN','ROLE_ADMIN','ROLE_USER')")
+    public ResponseEntity<Result> updateUserPassword(@PathVariable String id,@RequestParam String password){
         userService.resetPassword(id,password);
+        return new ResponseEntity<>((Result.success()),HttpStatus.OK);
+    }
+
+    /**
+     * 重置用户信息（不包括密码）
+     * @param id
+     * @param info
+     * @return
+     */
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN','ROLE_ADMIN','ROLE_USER')")
+    public ResponseEntity<Result> updateUserInfo(@PathVariable String id, @RequestBody User info){
+        userService.resetInfo(id,info);
         return new ResponseEntity<>((Result.success()),HttpStatus.OK);
     }
 
@@ -47,8 +56,9 @@ public class UserController {
      * @return
      */
     @GetMapping
-    public ResponseEntity<Result> getAll(){
-        return new ResponseEntity<>(Result.success(userService.list()), HttpStatus.OK);
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+    public ResponseEntity<Result> getAllUser(){
+        return new ResponseEntity<>(Result.success(userService.getAllUser()), HttpStatus.OK);
     }
 
     /**
@@ -57,8 +67,21 @@ public class UserController {
      * @return
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Result> getOne(@PathVariable String id){
-        return new ResponseEntity<>(Result.success(userService.getById(id)), HttpStatus.OK);
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+    public ResponseEntity<Result> getOneUser(@PathVariable String id){
+        return new ResponseEntity<>(Result.success(userService.getOneUser(id)), HttpStatus.OK);
+    }
+
+    /**
+     * 删除一个用户
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+    public ResponseEntity<Result> deleteOneUser(@PathVariable String id) {
+        userService.deleteOneUser(id);
+        return new ResponseEntity<>(Result.success(), HttpStatus.OK);
     }
 
 }

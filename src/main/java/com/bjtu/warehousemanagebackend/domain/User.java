@@ -43,8 +43,4 @@ public class User implements Serializable {
     @ApiModelProperty(value = "创建时间")
     private String createAt;
 
-    @ApiModelProperty(value = "更新时间")
-    private String updateAt;
-
-
 }

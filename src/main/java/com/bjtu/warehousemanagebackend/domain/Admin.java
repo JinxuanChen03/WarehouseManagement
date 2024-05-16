@@ -41,10 +41,5 @@ public class Admin implements Serializable {
     private String permission;
 
     @ApiModelProperty(value = "创建时间")
-    private String createdAt;
-
-    @ApiModelProperty(value = "是否删除")
-    private Boolean deleted;
-
-
+    private String createAt;
 }

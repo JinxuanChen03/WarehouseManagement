@@ -1,10 +1,12 @@
 package com.bjtu.warehousemanagebackend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.bjtu.warehousemanagebackend.controller.dto.LoginDto;
 import com.bjtu.warehousemanagebackend.domain.User;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -22,19 +24,17 @@ public interface IUserService extends IService<User> {
 
     void logout();
 
-    HashMap<String,String> login(User user);
+    HashMap<String,String> login(LoginDto dto);
 
     User getByName(String name);
 
-    List<User> getAllAdmin();
-
-    User getOneAdmin(String id);
-
-    boolean hasSuperAdmin();
-
-    void initSuperAdmin();
-
     void resetPassword(String id, String password);
 
-    void deleteOneAdmin(String id);
+    void resetInfo(String id, User info);
+
+    List<Map<String, Object>> getAllUser();
+
+    Map<String, Object> getOneUser(String id);
+
+    void deleteOneUser(String id);
 }

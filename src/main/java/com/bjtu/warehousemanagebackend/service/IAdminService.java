@@ -1,7 +1,12 @@
 package com.bjtu.warehousemanagebackend.service;
 
+import com.bjtu.warehousemanagebackend.controller.dto.LoginDto;
 import com.bjtu.warehousemanagebackend.domain.Admin;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +18,25 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IAdminService extends IService<Admin> {
 
+    void initSuperAdmin();
+
+    boolean hasSuperAdmin();
+
+    List<Map<String, Object>> getAllAdmin();
+
+    Map<String, Object> getOneAdmin(String id);
+
+    void deleteOneAdmin(String id);
+
+    void resetPassword(String id, String password);
+
+    void resetInfo(String id, Admin info);
+
+    Admin getByName(String name);
+
+    void adminRegister(Admin newAdmin);
+
+    HashMap<String,String> loginAdmin(LoginDto dto);
+
+    void logout();
 }
