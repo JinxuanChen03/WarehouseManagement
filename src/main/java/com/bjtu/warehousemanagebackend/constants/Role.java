@@ -1,4 +1,4 @@
-package com.bjtu.warehousemanagebackend.enums;
+package com.bjtu.warehousemanagebackend.constants;
 
 public enum Role {
     ROLE_SUPER_ADMIN("ROLE_SUPER_ADMIN", "超级管理员"),

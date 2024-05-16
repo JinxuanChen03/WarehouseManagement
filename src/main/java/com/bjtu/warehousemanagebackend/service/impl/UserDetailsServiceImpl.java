@@ -1,10 +1,10 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bjtu.warehousemanagebackend.entity.User;
+import com.bjtu.warehousemanagebackend.domain.LoginUser;
+import com.bjtu.warehousemanagebackend.domain.User;
 import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import com.bjtu.warehousemanagebackend.mapper.UserMapper;
-import com.bjtu.warehousemanagebackend.utils.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;

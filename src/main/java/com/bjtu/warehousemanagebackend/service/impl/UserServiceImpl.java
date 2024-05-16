@@ -1,15 +1,15 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.bjtu.warehousemanagebackend.entity.User;
-import com.bjtu.warehousemanagebackend.enums.Role;
+import com.bjtu.warehousemanagebackend.domain.LoginUser;
+import com.bjtu.warehousemanagebackend.domain.User;
+import com.bjtu.warehousemanagebackend.constants.Role;
 import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import com.bjtu.warehousemanagebackend.mapper.UserMapper;
 import com.bjtu.warehousemanagebackend.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.DateTimeUtil;
 import com.bjtu.warehousemanagebackend.utils.JwtUtil;
-import com.bjtu.warehousemanagebackend.utils.LoginUser;
 import com.bjtu.warehousemanagebackend.utils.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

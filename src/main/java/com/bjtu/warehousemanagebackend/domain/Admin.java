@@ -1,4 +1,4 @@
-package com.bjtu.warehousemanagebackend.entity;
+package com.bjtu.warehousemanagebackend.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -12,39 +12,39 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 商品表
+ * 管理员表
  * </p>
  *
  * @author Jinxuan Chen
- * @since 2024-04-30
+ * @since 2024-05-16
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("goods")
-@ApiModel(value="Goods对象", description="商品表")
-public class Goods implements Serializable {
+@TableName("admin")
+@ApiModel(value="Admin对象", description="管理员表")
+public class Admin implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "商品id")
+    @ApiModelProperty(value = "管理员id")
     @TableId(value = "id", type = IdType.AUTO)
     private String id;
 
-    @ApiModelProperty(value = "商品名")
+    @ApiModelProperty(value = "管理员名称")
     private String name;
 
-    @ApiModelProperty(value = "商品数量")
-    private Integer count;
+    @ApiModelProperty(value = "管理员密码")
+    private String password;
 
-    @ApiModelProperty(value = "bei")
-    private String description;
+    @ApiModelProperty(value = "管理员权限")
+    private String permission;
 
-    private Double price;
+    @ApiModelProperty(value = "创建时间")
+    private String createdAt;
 
-    private String createAt;
-
-    private String updateAt;
+    @ApiModelProperty(value = "是否删除")
+    private Boolean deleted;
 
 
 }

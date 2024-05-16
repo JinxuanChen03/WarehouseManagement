@@ -1,6 +1,6 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
-import com.bjtu.warehousemanagebackend.entity.Company;
+import com.bjtu.warehousemanagebackend.domain.Company;
 import com.bjtu.warehousemanagebackend.mapper.CompanyMapper;
 import com.bjtu.warehousemanagebackend.service.ICompanyService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

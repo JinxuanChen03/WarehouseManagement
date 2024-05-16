@@ -1,7 +1,7 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.bjtu.warehousemanagebackend.entity.Warehouse;
+import com.bjtu.warehousemanagebackend.domain.Warehouse;
 import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import com.bjtu.warehousemanagebackend.mapper.WarehouseMapper;
 import com.bjtu.warehousemanagebackend.service.IWarehouseService;

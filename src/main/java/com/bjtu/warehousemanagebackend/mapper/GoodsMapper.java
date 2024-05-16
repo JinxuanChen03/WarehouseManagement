@@ -1,7 +1,7 @@
 package com.bjtu.warehousemanagebackend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.bjtu.warehousemanagebackend.entity.Goods;
+import com.bjtu.warehousemanagebackend.domain.Goods;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

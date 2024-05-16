@@ -1,16 +1,16 @@
 package com.bjtu.warehousemanagebackend.service;
 
+import com.bjtu.warehousemanagebackend.domain.Admin;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.bjtu.warehousemanagebackend.domain.Company;
 
 /**
  * <p>
- *  服务类
+ * 管理员表 服务类
  * </p>
  *
  * @author Jinxuan Chen
- * @since 2024-04-30
+ * @since 2024-05-16
  */
-public interface ICompanyService extends IService<Company> {
+public interface IAdminService extends IService<Admin> {
 
 }

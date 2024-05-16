@@ -1,9 +1,9 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 
-import com.bjtu.warehousemanagebackend.entity.Goods;
+import com.bjtu.warehousemanagebackend.domain.Goods;
 import com.bjtu.warehousemanagebackend.service.impl.GoodsServiceImpl;
-import com.bjtu.warehousemanagebackend.utils.Result;
+import com.bjtu.warehousemanagebackend.domain.Result;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

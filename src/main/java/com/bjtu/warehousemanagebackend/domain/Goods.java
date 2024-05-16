@@ -1,4 +1,4 @@
-package com.bjtu.warehousemanagebackend.entity;
+package com.bjtu.warehousemanagebackend.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 公司表
+ * 商品表
  * </p>
  *
  * @author Jinxuan Chen
@@ -21,26 +21,29 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("company")
-@ApiModel(value="Company对象", description="公司表")
-public class Company implements Serializable {
+@TableName("goods")
+@ApiModel(value="Goods对象", description="商品表")
+public class Goods implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "公司id")
+    @ApiModelProperty(value = "商品id")
     @TableId(value = "id", type = IdType.AUTO)
     private String id;
 
-    @ApiModelProperty(value = "公司名")
+    @ApiModelProperty(value = "商品名")
     private String name;
 
-    @ApiModelProperty(value = "公司地址")
-    private String addr;
+    @ApiModelProperty(value = "商品数量")
+    private Integer count;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "bei")
+    private String description;
+
+    private Double price;
+
     private String createAt;
 
-    @ApiModelProperty(value = "更新时间")
     private String updateAt;
 
 

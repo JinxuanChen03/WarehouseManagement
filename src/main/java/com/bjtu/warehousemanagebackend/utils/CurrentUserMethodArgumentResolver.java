@@ -1,7 +1,7 @@
 package com.bjtu.warehousemanagebackend.utils;
 
 import com.bjtu.warehousemanagebackend.annotation.CurrentUser;
-import com.bjtu.warehousemanagebackend.entity.User;
+import com.bjtu.warehousemanagebackend.domain.User;
 import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.bjtu.warehousemanagebackend.entity;
+package com.bjtu.warehousemanagebackend.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 出入库记录表
+ * 用户表
  * </p>
  *
  * @author Jinxuan Chen
@@ -21,33 +21,30 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("inventory_record")
-@ApiModel(value="InventoryRecord对象", description="出入库记录表")
-public class InventoryRecord implements Serializable {
+@TableName("user")
+@ApiModel(value="User对象", description="用户表")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "记录id")
+    @ApiModelProperty(value = "用户id")
     @TableId(value = "id", type = IdType.AUTO)
     private String id;
 
-    @ApiModelProperty(value = "商品id")
-    private String cid;
+    @ApiModelProperty(value = "用户名")
+    private String name;
 
-    @ApiModelProperty(value = "仓库id")
-    private String wid;
+    @ApiModelProperty(value = "用户密码")
+    private String password;
 
-    @ApiModelProperty(value = "出入库数量")
-    private Integer count;
-
-    @ApiModelProperty(value = "备注")
-    private String description;
-
-    @ApiModelProperty(value = "出库/入库")
-    private Integer type;
+    @ApiModelProperty(value = "用户权限")
+    private String permission;
 
     @ApiModelProperty(value = "创建时间")
     private String createAt;
+
+    @ApiModelProperty(value = "更新时间")
+    private String updateAt;
 
 
 }

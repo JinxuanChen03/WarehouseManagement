@@ -47,6 +47,17 @@ public class JwtUtil {
         return builder.compact();
     }
 
+    /**
+     * 创建token
+     * @param name
+     * @param role
+     * @return
+     */
+    public static String createJWT(String name, String role) {
+        JwtBuilder builder = getJwtBuilder(name+role, null, getUUID());// 设置过期时间
+        return builder.compact();
+    }
+
     private static JwtBuilder getJwtBuilder(String subject, Long ttlMillis, String uuid) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         SecretKey secretKey = generalKey();
@@ -64,18 +75,6 @@ public class JwtUtil {
                 .setIssuedAt(now)      // 签发时间
                 .signWith(signatureAlgorithm, secretKey) //使用HS256对称加密算法签名, 第二个参数为秘钥
                 .setExpiration(expDate);
-    }
-
-    /**
-     * 创建token
-     * @param id
-     * @param subject
-     * @param ttlMillis
-     * @return
-     */
-    public static String createJWT(Integer id, String subject, Long ttlMillis) {
-        JwtBuilder builder = getJwtBuilder(subject, ttlMillis, String.valueOf(id));// 设置过期时间
-        return builder.compact();
     }
 
     public static void main(String[] args) throws Exception {

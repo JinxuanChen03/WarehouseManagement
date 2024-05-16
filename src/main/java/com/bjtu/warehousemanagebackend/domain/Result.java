@@ -1,4 +1,4 @@
-package com.bjtu.warehousemanagebackend.utils;
+package com.bjtu.warehousemanagebackend.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

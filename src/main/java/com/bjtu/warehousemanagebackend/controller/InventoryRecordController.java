@@ -1,9 +1,9 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 
-import com.bjtu.warehousemanagebackend.entity.InventoryRecord;
+import com.bjtu.warehousemanagebackend.domain.InventoryRecord;
 import com.bjtu.warehousemanagebackend.service.impl.InventoryRecordServiceImpl;
-import com.bjtu.warehousemanagebackend.utils.Result;
+import com.bjtu.warehousemanagebackend.domain.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

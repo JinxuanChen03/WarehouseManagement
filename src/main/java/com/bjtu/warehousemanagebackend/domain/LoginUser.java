@@ -1,7 +1,6 @@
-package com.bjtu.warehousemanagebackend.utils;
+package com.bjtu.warehousemanagebackend.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.bjtu.warehousemanagebackend.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +26,7 @@ public class LoginUser implements UserDetails {
     @JSONField(serialize = false) //不会序列化到Redis当中
     private List<GrantedAuthority> authorities;
 
-    public LoginUser(User user,List<String> permissions) {
+    public LoginUser(User user, List<String> permissions) {
         this.user = user;
         this.permissions = permissions;
     }
@@ -41,7 +40,6 @@ public class LoginUser implements UserDetails {
         authorities = permissions.stream().
                 map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-//        System.out.println("!!!!!!authorities in LoginUser: "+authorities);
         return authorities;
     }
 

@@ -1,8 +1,8 @@
-package com.bjtu.warehousemanagebackend.exception;
+package com.bjtu.warehousemanagebackend.handler;
 
-import com.bjtu.warehousemanagebackend.utils.Result;
+import com.bjtu.warehousemanagebackend.domain.Result;
+import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import jakarta.validation.ConstraintViolationException;
-import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -92,10 +92,10 @@ public class GlobalExceptionHandler {
      * @param e
      * @return
      */
-    @ExceptionHandler({RedisConnectionFailureException.class})
-    @ResponseBody
-    public ResponseEntity<Result> handleConnectionException(RedisConnectionFailureException e) {
-        return ResponseEntity.internalServerError().body(Result.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage()));
-    }
+//    @ExceptionHandler({RedisConnectionFailureException.class})
+//    @ResponseBody
+//    public ResponseEntity<Result> handleConnectionException(RedisConnectionFailureException e) {
+//        return ResponseEntity.internalServerError().body(Result.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage()));
+//    }
 }
 

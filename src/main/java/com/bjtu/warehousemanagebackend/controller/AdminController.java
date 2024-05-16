@@ -1,11 +1,11 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 
-import com.bjtu.warehousemanagebackend.entity.User;
-import com.bjtu.warehousemanagebackend.enums.Role;
+import com.bjtu.warehousemanagebackend.domain.User;
+import com.bjtu.warehousemanagebackend.constants.Role;
 import com.bjtu.warehousemanagebackend.service.impl.UserServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.DateTimeUtil;
-import com.bjtu.warehousemanagebackend.utils.Result;
+import com.bjtu.warehousemanagebackend.domain.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
