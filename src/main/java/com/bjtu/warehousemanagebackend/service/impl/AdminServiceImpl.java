@@ -164,7 +164,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         map.put("token",jwt);
         map.put("permission",nowAdmin.getPermission());
         map.put("name", nowAdmin.getName());
-        map.put("id", nowAdmin.getId().toString());
+        map.put("id", nowAdmin.getId());
 
         return map;
     }
