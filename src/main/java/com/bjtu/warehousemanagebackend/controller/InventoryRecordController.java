@@ -7,6 +7,7 @@ import com.bjtu.warehousemanagebackend.domain.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,7 +23,7 @@ public class InventoryRecordController {
      * @return
      */
     @PostMapping("/in")
-//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result> in(@RequestBody InventoryRecord record) {
         recordService.in(record);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
@@ -34,7 +35,7 @@ public class InventoryRecordController {
      * @return
      */
     @PostMapping("/out")
-//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result> out(@RequestBody InventoryRecord record) {
         recordService.out(record);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
@@ -46,6 +47,7 @@ public class InventoryRecordController {
      * @return
      */
     @GetMapping("/warehouse/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result> findRecordByWarehouse(@PathVariable String id) {
         return new ResponseEntity<>(Result.success(recordService.findAllByWarehouseId(id)), HttpStatus.OK);
     }
@@ -56,6 +58,7 @@ public class InventoryRecordController {
      * @return
      */
     @GetMapping("/goods/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result> findRecordByGoods(@PathVariable String id) {
         return new ResponseEntity<>(Result.success(recordService.findAllByGoodsId(id)), HttpStatus.OK);
     }

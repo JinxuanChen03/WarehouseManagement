@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class GoodsController {
      * @return
      */
     @PostMapping
-//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result> addGoods(@RequestBody @Valid Goods good){
         goodsService.addGoods(good);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
@@ -37,7 +38,7 @@ public class GoodsController {
      * @return
      */
     @PutMapping("/{id}")
-//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result> updateGoods(@PathVariable("id") String id, @RequestBody @Valid Goods good) {
         good.setId(id); // 设置要更新的仓库的id
         goodsService.updateGoods(good);
@@ -50,6 +51,7 @@ public class GoodsController {
      * @return
      */
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result> getGoodsById(@PathVariable("id") String id) {
         Goods good = goodsService.getGoodsById(id);
         return new ResponseEntity<>(Result.success(good), HttpStatus.OK);
@@ -61,6 +63,7 @@ public class GoodsController {
      * @return
      */
     @GetMapping("/search/{name}")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result>  findByLikeName(@PathVariable String name) {
         return new ResponseEntity<>(Result.success(goodsService.findByLikeName(name)), HttpStatus.OK);
     }
@@ -70,6 +73,7 @@ public class GoodsController {
      * @return
      */
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result> getAllGoods() {
         List<Goods> goods = goodsService.getAllGoods();
         return new ResponseEntity<>(Result.success(goods), HttpStatus.OK);
@@ -81,7 +85,7 @@ public class GoodsController {
      * @return
      */
     @DeleteMapping("/{id}")
-//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN' ,'ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity<Result> deleteGoods(@PathVariable("id") String id) {
         goodsService.deleteGoods(id);
         return new ResponseEntity<>(Result.success(), HttpStatus.OK);
