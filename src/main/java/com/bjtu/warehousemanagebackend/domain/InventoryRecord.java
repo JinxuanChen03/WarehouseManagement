@@ -48,6 +48,4 @@ public class InventoryRecord implements Serializable {
 
     @ApiModelProperty(value = "创建时间")
     private String createAt;
-
-
 }

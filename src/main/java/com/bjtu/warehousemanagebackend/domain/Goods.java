@@ -43,8 +43,4 @@ public class Goods implements Serializable {
     private Double price;
 
     private String createAt;
-
-    private String updateAt;
-
-
 }

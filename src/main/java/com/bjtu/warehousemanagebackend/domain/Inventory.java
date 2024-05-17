@@ -42,6 +42,4 @@ public class Inventory implements Serializable {
 
     @ApiModelProperty(value = "库存数量")
     private Integer count;
-
-
 }

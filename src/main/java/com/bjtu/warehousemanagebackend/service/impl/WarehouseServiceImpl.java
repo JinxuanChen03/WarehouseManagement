@@ -54,7 +54,6 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
     public void updateWarehouse(Warehouse warehouse) {
         if(getWarehouseById(warehouse.getId()) == null)
             throw new ServiceException(HttpStatus.FORBIDDEN.value(), "仓库不存在");
-        warehouse.setUpdateAt(DateTimeUtil.getNowTimeString());
         updateById(warehouse);
     }
 
