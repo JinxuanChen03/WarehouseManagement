@@ -49,6 +49,7 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
     public void addGoods(Goods good) {
         if(getGoodsByName(good.getName()) != null)
             throw new ServiceException(HttpStatus.FORBIDDEN.value(), "商品已存在");
+        good.setCount(0);
         good.setCreateAt(DateTimeUtil.getNowTimeString());
         save(good);
     }

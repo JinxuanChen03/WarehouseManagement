@@ -55,7 +55,7 @@ public class InventoryRecordServiceImpl extends ServiceImpl<InventoryRecordMappe
         if(goods == null)
             throw new ServiceException(HttpStatus.NOT_FOUND.value(), "不存在的商品id");
         goods.setCount(goods.getCount() + record.getCount());
-        goodsService.save(goods);
+        goodsService.updateById(goods);
 
         Inventory inventory = inventoryService.findByWidAndCid(record.getWid(),record.getCid());
         if(inventory == null){
@@ -67,7 +67,7 @@ public class InventoryRecordServiceImpl extends ServiceImpl<InventoryRecordMappe
         }
 
         inventory.setCount(inventory.getCount()+ record.getCount());
-        inventoryService.save(inventory);
+        inventoryService.saveOrUpdate(inventory);
 
         record.setCreateAt(DateTimeUtil.getNowTimeString());
         record.setType(+1);
@@ -86,10 +86,10 @@ public class InventoryRecordServiceImpl extends ServiceImpl<InventoryRecordMappe
         if(goods == null)
             throw new ServiceException(HttpStatus.NOT_FOUND.value(), "不存在的商品id");
         goods.setCount(goods.getCount() - record.getCount());
-        goodsService.save(goods);
+        goodsService.updateById(goods);
 
         inventory.setCount(inventory.getCount() - record.getCount());
-        inventoryService.save(inventory);
+        inventoryService.saveOrUpdate(inventory);
 
         record.setCreateAt(DateTimeUtil.getNowTimeString());
         record.setType(-1);

@@ -1,6 +1,7 @@
 package com.bjtu.warehousemanagebackend.controller;
 
 
+import com.bjtu.warehousemanagebackend.domain.Inventory;
 import com.bjtu.warehousemanagebackend.service.impl.InventoryServiceImpl;
 import com.bjtu.warehousemanagebackend.domain.Result;
 import org.springframework.beans.factory.annotation.Autowired;
