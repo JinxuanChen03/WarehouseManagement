@@ -1,41 +1,55 @@
+-- auto-generated definition
+create table admin
+(
+    id         int auto_increment comment '管理员id'
+        primary key,
+    name       varchar(255) null comment '管理员名称',
+    password   varchar(255) null comment '管理员密码',
+    permission varchar(255) null comment '管理员权限',
+    create_at  varchar(255) null comment '创建时间'
+)
+    comment '管理员表';
+
+-- auto-generated definition
 create table company
 (
     id        varchar(255) not null comment '公司id'
         primary key,
     name      varchar(255) null comment '公司名',
     addr      varchar(255) null comment '公司地址',
-    create_at varchar(255) null comment '创建时间',
-    update_at varchar(255) null comment '更新时间'
+    create_at varchar(255) null comment '创建时间'
 )
     comment '公司表';
 
+-- auto-generated definition
 create table goods
 (
-    id          varchar(255) not null comment '商品id'
+    id          int auto_increment comment '商品id'
         primary key,
     name        varchar(255) null comment '商品名',
     count       int          null comment '商品数量',
     description varchar(255) null comment 'bei',
     price       double       null,
-    create_at   varchar(255) null,
-    update_at   varchar(255) null
+    create_at   varchar(255) null
 )
     comment '商品表';
 
+-- auto-generated definition
 create table inventory
 (
-    id          varchar(255) not null comment '库存id'
+    id          int auto_increment comment '库存id'
         primary key,
     cid         varchar(255) null comment '商品id',
     wid         varchar(255) null comment '仓库id',
-    discription varchar(255) null comment '备注',
+    description varchar(255) null comment '备注',
     count       int          null comment '库存数量'
 )
     comment '商品库存表';
 
+-- auto-generated definition
 create table inventory_record
 (
-    id          varchar(255) not null comment '记录id'
+    id          int auto_increment comment '记录id'
         primary key,
     cid         varchar(255) null comment '商品id',
     wid         varchar(255) null comment '仓库id',
@@ -46,21 +60,22 @@ create table inventory_record
 )
     comment '出入库记录表';
 
+-- auto-generated definition
 create table user
 (
-    id         varchar(255) not null comment '用户id'
+    id         int auto_increment comment '用户id'
         primary key,
     name       varchar(255) null comment '用户名',
     password   varchar(255) null comment '用户密码',
     permission varchar(255) null comment '用户权限',
-    create_at  varchar(255) null comment '创建时间',
-    update_at  varchar(255) null comment '更新时间'
+    create_at  varchar(255) null comment '创建时间'
 )
     comment '用户表';
 
+-- auto-generated definition
 create table warehouse
 (
-    id        varchar(255) not null comment '仓库id'
+    id        int auto_increment comment '仓库id'
         primary key,
     name      varchar(255) null comment '仓库名称',
     addr      varchar(255) null comment '仓库地址',
@@ -68,3 +83,4 @@ create table warehouse
     update_at int          null comment '更新时间'
 )
     comment '仓库表';
+
