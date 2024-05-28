@@ -1,0 +1,27 @@
+server:
+  port: 3309
+
+spring:
+  application:
+    name: assignment2-warehouse
+
+  data:
+#    redis:
+#      host: 127.0.0.1
+#      port: 6379
+#      #      password: "12345"
+#      #      database: 0
+#      timeout: 5000
+
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/house?serverTimezone=GMT
+    username: 'root'
+    password: '123456'
+    # ??R2DBC??
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
+    time-zone: GMT+8
+
+  main:
+    allow-circular-references: true
