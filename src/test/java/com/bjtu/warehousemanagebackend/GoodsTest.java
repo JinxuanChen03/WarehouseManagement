@@ -74,7 +74,7 @@ public class GoodsTest {
         mockMvc.perform(put("/goods/1")
                         .header("Token",token)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"name\":\"Updated Good\",\"quantity\":20,\"price\": 30}")
+                        .content("{\"name\":\"Updated Good\",\"count\":20,\"price\": 30}")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
