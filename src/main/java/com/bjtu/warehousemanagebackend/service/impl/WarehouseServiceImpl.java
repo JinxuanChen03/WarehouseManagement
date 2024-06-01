@@ -1,12 +1,16 @@
 package com.bjtu.warehousemanagebackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.bjtu.warehousemanagebackend.domain.Event;
+import com.bjtu.warehousemanagebackend.domain.Goods;
+import com.bjtu.warehousemanagebackend.domain.Location;
 import com.bjtu.warehousemanagebackend.domain.Warehouse;
 import com.bjtu.warehousemanagebackend.exception.ServiceException;
 import com.bjtu.warehousemanagebackend.mapper.WarehouseMapper;
 import com.bjtu.warehousemanagebackend.service.IWarehouseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bjtu.warehousemanagebackend.utils.DateTimeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +26,24 @@ import java.util.List;
  */
 @Service
 public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse> implements IWarehouseService {
+
+    @Autowired
+    private KafkaProducerServiceImpl kafkaProducerService;
+
+    public void handleLogisticsUnloading(Goods goods) {
+        Event event = new Event("LogisticsUnloading", goods);
+        kafkaProducerService.sendEvent("logistics", event);
+    }
+
+    public void handleInspection(Goods goods) {
+        Event event = new Event("Inspection", goods);
+        kafkaProducerService.sendEvent("inspection", event);
+    }
+
+    public void handleStorage(Location location, Goods goods) {
+        Event event = new Event("Storage", new Object[]{location, goods});
+        kafkaProducerService.sendEvent("storage", event);
+    }
 
     @Override
     public void deleteWarehouse(String id) {
@@ -68,4 +90,6 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
     public List<Warehouse> getAll() {
         return list();
     }
+
+
 }
