@@ -1,4 +1,4 @@
-### 前端链接：[https://github.com/fishbbb/WarehouseFrontend.git](https://github.com/fishbbb/WarehouseFrontend/tree/master)
+前端链接：[https://github.com/fishbbb/WarehouseFrontend.git](https://github.com/fishbbb/WarehouseFrontend/tree/master)
 
 # BJTU 2024 Java EE Homework 3
 # 通过 Kafka 实现事件驱动的仓库存储
